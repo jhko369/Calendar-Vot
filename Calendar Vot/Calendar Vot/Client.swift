@@ -14,13 +14,7 @@
 //  Copyright © 2016년 Neobono_Mac1. All rights reserved.
 //
 
-import UIKit
 import Foundation
-
-class InputData : UITableViewController
-{
-    
-}
 
 class VoteName
 {
@@ -77,9 +71,11 @@ class Vote
     }
 }
 
-var voteName : VoteName? = VoteName.init(name: "에러 없음")
+var voteName : VoteName = VoteName.init(name: "에러 없음")
 var meetingDate : [Int : MeetingDate] = [:]
 var meetingPlace : [Int : MeetingPlace] = [:]
+
+var vote : Vote = Vote.init(name: voteName, date: meetingDate, place: meetingPlace)
 
 
 

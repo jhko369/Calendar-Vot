@@ -9,6 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet var voteName: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

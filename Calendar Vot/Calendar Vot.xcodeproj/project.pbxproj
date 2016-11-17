@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083DDC1DD549240097FC9C /* AppDelegate.swift */; };
-		4C083DDF1DD549240097FC9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083DDE1DD549240097FC9C /* ViewController.swift */; };
 		4C083DE21DD549240097FC9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE01DD549240097FC9C /* Main.storyboard */; };
-		4C083DE41DD549240097FC9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE31DD549240097FC9C /* Assets.xcassets */; };
 		4C083DE71DD549240097FC9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */; };
 		4C083DF21DD549240097FC9C /* Calendar_VotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083DF11DD549240097FC9C /* Calendar_VotTests.swift */; };
 		4C083DFD1DD549240097FC9C /* Calendar_VotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083DFC1DD549240097FC9C /* Calendar_VotUITests.swift */; };
 		4C083E0B1DD549460097FC9C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083E0A1DD549460097FC9C /* Client.swift */; };
+		EB17572A1DDD7FC800A07263 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757291DDD7FC800A07263 /* AddViewController.swift */; };
+		EB17572C1DDD837000A07263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB17572B1DDD837000A07263 /* Images.xcassets */; };
+		EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
+		EB1757301DDD8AF200A07263 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572F1DDD8AF200A07263 /* TitleCell.swift */; };
+		EB1757321DDD8B2B00A07263 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757311DDD8B2B00A07263 /* LocationCell.swift */; };
+		EB8FD2AA1DDD979C00D23B55 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +41,7 @@
 /* Begin PBXFileReference section */
 		4C083DD91DD549240097FC9C /* Calendar Vot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar Vot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C083DDC1DD549240097FC9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4C083DDE1DD549240097FC9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C083DE11DD549240097FC9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4C083DE31DD549240097FC9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C083DE61DD549240097FC9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C083DE81DD549240097FC9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C083DED1DD549240097FC9C /* Calendar VotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calendar VotTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +51,12 @@
 		4C083DFC1DD549240097FC9C /* Calendar_VotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar_VotUITests.swift; sourceTree = "<group>"; };
 		4C083DFE1DD549240097FC9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C083E0A1DD549460097FC9C /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		EB1757291DDD7FC800A07263 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		EB17572B1DDD837000A07263 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EB17572D1DDD8AE300A07263 /* DateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		EB17572F1DDD8AF200A07263 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		EB1757311DDD8B2B00A07263 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +108,16 @@
 			isa = PBXGroup;
 			children = (
 				4C083DDC1DD549240097FC9C /* AppDelegate.swift */,
-				4C083DDE1DD549240097FC9C /* ViewController.swift */,
 				4C083DE01DD549240097FC9C /* Main.storyboard */,
-				4C083DE31DD549240097FC9C /* Assets.xcassets */,
 				4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */,
 				4C083DE81DD549240097FC9C /* Info.plist */,
 				4C083E0A1DD549460097FC9C /* Client.swift */,
+				EB1757291DDD7FC800A07263 /* AddViewController.swift */,
+				EB17572B1DDD837000A07263 /* Images.xcassets */,
+				EB17572D1DDD8AE300A07263 /* DateCell.swift */,
+				EB17572F1DDD8AF200A07263 /* TitleCell.swift */,
+				EB1757311DDD8B2B00A07263 /* LocationCell.swift */,
+				EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */,
 			);
 			path = "Calendar Vot";
 			sourceTree = "<group>";
@@ -235,8 +247,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB17572C1DDD837000A07263 /* Images.xcassets in Resources */,
 				4C083DE71DD549240097FC9C /* LaunchScreen.storyboard in Resources */,
-				4C083DE41DD549240097FC9C /* Assets.xcassets in Resources */,
 				4C083DE21DD549240097FC9C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,8 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C083DDF1DD549240097FC9C /* ViewController.swift in Sources */,
+				EB1757301DDD8AF200A07263 /* TitleCell.swift in Sources */,
+				EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */,
+				EB8FD2AA1DDD979C00D23B55 /* OptionCell.swift in Sources */,
 				4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */,
+				EB1757321DDD8B2B00A07263 /* LocationCell.swift in Sources */,
+				EB17572A1DDD7FC800A07263 /* AddViewController.swift in Sources */,
 				4C083E0B1DD549460097FC9C /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Calendar Vot/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "YnJ.Calendar-Vot";
@@ -428,6 +445,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Calendar Vot/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "YnJ.Calendar-Vot";
@@ -509,6 +527,7 @@
 				4C083E031DD549240097FC9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C083E041DD549240097FC9C /* Build configuration list for PBXNativeTarget "Calendar VotTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +536,7 @@
 				4C083E061DD549240097FC9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4C083E071DD549240097FC9C /* Build configuration list for PBXNativeTarget "Calendar VotUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +545,7 @@
 				4C083E091DD549240097FC9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

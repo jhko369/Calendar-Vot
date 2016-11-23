@@ -11,11 +11,13 @@ import UIKit
 class DateCell: UITableViewCell {
 
 
-    @IBOutlet weak var DateText: UILabel!
-    @IBAction func DateBtn(_ sender: UIButton) {
+    @IBAction func startBtn(_ sender: UIButton) {
     }
+
     
-    
+   
+    @IBAction func endBtn(_ sender: UIButton) {
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

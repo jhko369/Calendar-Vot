@@ -32,6 +32,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
+		
         AddVoteTable.dataSource = self
         AddVoteTable.delegate = self
       //  AddVoteTable.register(UITableViewCell.self, forCellReuseIdentifier: "OptionCell")
@@ -84,9 +85,9 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             let cell:DateCell
             cell = tableView.dequeueReusableCell(withIdentifier: "DateCell") as! DateCell
-            let date = sampleDate[indexPath.row]
-            let datetext:String = date.Start + " - " + date.End
-            cell.DateText.text = datetext
+//            let date = sampleDate[indexPath.row]
+//            let datetext:String = date.Start + " - " + date.End
+//            cell.DateText.text = datetext
             return cell
 
         }
@@ -107,37 +108,15 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             return cell
         }
-        
-        
-        
-        
+
     }
     
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        
-//        
-//        if section == 0{
-//            return "Title"
-//        }
-//        else if section == 1{
-//
-//            return "Date"
-//        }
-//        else if section == 2{
-//            return "Location"
-//        }
-//        else{
-//            return "Option"
-//        }
-//    }
+
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         var height : CGFloat
-        
         height = 40
-        
         return height
         
     }
@@ -171,33 +150,30 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }else if section == 2 {
             title.text = "Location"
             headerView?.addSubview(addBtn)
-
         
         }else{
             title.text = "Option"
-
-        
+      
         }
         
             headerView?.addSubview(title)
             return headerView
-            
         
     }
     
-    
-    
-    
-    func buttonTouched(sender:UIButton!){
-        
-        print("diklik")
-        
-        
-    }
-
-    
-    
-    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.section == 1
+//        {
+//            var height : CGFloat
+//            height = 250
+//            return height}
+//        else
+//        {
+//            return 30
+//        }
+//    }
+//    
+  
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

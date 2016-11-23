@@ -11,13 +11,33 @@ import UIKit
 class DateCell: UITableViewCell {
 
 
-    @IBAction func startBtn(_ sender: UIButton) {
-    }
-
+    @IBOutlet weak var startField: UITextField!
     
-   
-    @IBAction func endBtn(_ sender: UIButton) {
+    @IBAction func startFieldEditing(_ sender: UITextField) {
+        
+        let datePickerView:UIDatePicker = UIDatePicker()
+        
+        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        datePickerView.locale = NSLocale(localeIdentifier: "en_GB") as Locale
+        
+        sender.inputView = datePickerView
+        
+        datePickerView.addTarget(self, action: #selector(DateCell.datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
     }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        
+        startField.text = dateFormatter.string(from: sender.date)
+        
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

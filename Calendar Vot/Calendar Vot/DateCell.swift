@@ -12,7 +12,7 @@ class DateCell: UITableViewCell {
 
    
     var startend:String = ""
-    var datePickerView:UIView = UIView()
+    var datePickerView:UIView = UIView() //datePicker, doneBtn 포함하는 inputView
     var datePicker:UIDatePicker = UIDatePicker()
     var doneBtn = UIButton()
     
@@ -24,8 +24,7 @@ class DateCell: UITableViewCell {
         startend = "start"
         showDatePicker()
         sender.inputView = datePickerView
-        doneBtn.addTarget(self, action: #selector(DateCell.doneButton), for: UIControlEvents.touchUpInside)
-        datePicker.addTarget(self, action: #selector(DateCell.datePickerValueChanged), for: UIControlEvents.valueChanged)
+       
     }
     
     
@@ -35,14 +34,12 @@ class DateCell: UITableViewCell {
         startend = "end"
         showDatePicker()
         sender.inputView = datePickerView
-        doneBtn.addTarget(self, action: #selector(DateCell.doneButton), for: UIControlEvents.touchUpInside)
-        datePicker.addTarget(self, action: #selector(DateCell.datePickerValueChanged), for: UIControlEvents.valueChanged)
 
     }
     
     
     func showDatePicker(){
-    
+    // 시작, 종료 시간을 나타내는 textfield 선택하면 나타나는 inputView 구성
         datePickerView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height:240))
         datePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.frame.size.width , height: 200))
         datePicker.datePickerMode = UIDatePickerMode.dateAndTime
@@ -55,7 +52,9 @@ class DateCell: UITableViewCell {
         doneBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
         doneBtn.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
         datePickerView.addSubview(doneBtn)
-
+        
+        doneBtn.addTarget(self, action: #selector(DateCell.doneButton), for: UIControlEvents.touchUpInside)
+        datePicker.addTarget(self, action: #selector(DateCell.datePickerValueChanged), for: UIControlEvents.valueChanged)
 
     }
     

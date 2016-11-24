@@ -13,10 +13,8 @@ class TitleCell: UITableViewCell {
     @IBOutlet weak var titleField: UITextField!
     
     public func editTitle(text: String?, placeholder: String){
-        titleField.text = text
-        titleField.placeholder = placeholder
-        titleField.accessibilityValue = text
-        titleField.accessibilityLabel = placeholder
+        
+
     }
     
     

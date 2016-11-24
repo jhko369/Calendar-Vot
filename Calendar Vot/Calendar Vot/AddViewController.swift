@@ -17,12 +17,12 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         var End:String
     }
     
-    let sampleDate = [
+    var sampleDate = [
         Date(Start:"20161111", End:"20161112"),
         Date(Start:"20161112", End:"20161113")
     ]
     
-    let sampleLocation = [
+    var sampleLocation = [
         "A station", "B station", "C station" ]
     
     let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
@@ -132,10 +132,15 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         title.textColor = UIColor.darkGray
         
         
-        let addBtn = UIButton(type: UIButtonType.contactAdd)
-        addBtn.backgroundColor = UIColor.clear
-        addBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
-        addBtn.addTarget(self, action: Selector(("buttonTouched:")), for: UIControlEvents.touchUpInside)
+        let addDateBtn = UIButton(type: UIButtonType.contactAdd)
+        addDateBtn.backgroundColor = UIColor.clear
+        addDateBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
+        addDateBtn.addTarget(self, action: #selector(self.addRow_date), for: UIControlEvents.touchUpInside)
+        
+        let addLocaBtn = UIButton(type: UIButtonType.contactAdd)
+        addLocaBtn.backgroundColor = UIColor.clear
+        addLocaBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
+        addLocaBtn.addTarget(self, action: #selector(self.addRow_location), for: UIControlEvents.touchUpInside)
         
         if section == 0{
             
@@ -144,12 +149,14 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         }else if section == 1 {
             title.text = "Date"
-            headerView?.addSubview(addBtn)
+            headerView?.addSubview(addDateBtn)
+
 
         
         }else if section == 2 {
             title.text = "Location"
-            headerView?.addSubview(addBtn)
+            headerView?.addSubview(addLocaBtn)
+
         
         }else{
             title.text = "Option"
@@ -161,19 +168,50 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 1
-//        {
-//            var height : CGFloat
-//            height = 250
-//            return height}
-//        else
-//        {
-//            return 30
-//        }
-//    }
-//    
-  
+    
+    func addRow_date(_: UIButton)
+    {
+        print("date")
+        sampleDate += [Date(Start:"20161115", End:"20161116")]
+        AddVoteTable.reloadData()
+      
+    }
+    func addRow_location(_:UIButton)
+    {
+        print("loca")
+        sampleLocation += ["D station"]
+        AddVoteTable.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        if(indexPath.section == 1 || indexPath.section == 2)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if(editingStyle == UITableViewCellEditingStyle.delete) {
+            if(indexPath.section == 1)
+            {
+                sampleDate.remove(at: indexPath.row)
+            }
+            else if (indexPath.section == 2)
+            {
+                sampleLocation.remove(at: indexPath.row)
+            }
+            AddVoteTable.reloadData()
+        }
+    }
+
+    
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

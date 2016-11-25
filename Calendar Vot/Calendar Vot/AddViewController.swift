@@ -12,7 +12,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 {
     @IBOutlet weak var AddVoteTable: UITableView!
 
-    var voteData : Vote = Vote()
+    var voteData : Vote = Vote() // 데이터 객체
     let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
 
     override func viewDidLoad()
@@ -32,8 +32,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return 4
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         if section == 0
         {
             return 1
@@ -186,12 +186,13 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             if(indexPath.section == 1)
             {
-                voteData.date.remove(at: [indexPath : voteData.date[indexPath]])
+                voteData.date[indexPath.row] = nil
             }
             else if (indexPath.section == 2)
             {
-                voteData.remove(at: indexPath.row)
+                voteData.place[indexPath.row] = nil
             }
+            
             AddVoteTable.reloadData()
         }
     }

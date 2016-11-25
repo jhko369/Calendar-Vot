@@ -8,43 +8,25 @@
 
 import UIKit
 
-class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-
+class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+{
     @IBOutlet weak var AddVoteTable: UITableView!
-    
-    struct  Date {
-        var Start:String
-        var End:String
-    }
-    
-    var sampleDate = [
-        Date(Start:"20161111", End:"20161112"),
-        Date(Start:"20161112", End:"20161113")
-    ]
-    
-    var sampleLocation = [
-        "A station", "B station", "C station" ]
-    
-    let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
-    
 
-    
-    override func viewDidLoad() {
+    var voteData : Vote = Vote()
+    let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
+
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
 		
         AddVoteTable.dataSource = self
         AddVoteTable.delegate = self
-      //  AddVoteTable.register(UITableViewCell.self, forCellReuseIdentifier: "OptionCell")
-        
-        
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-
     }
-    
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
@@ -52,37 +34,42 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0{
+        if section == 0
+        {
             return 1
         }
-        else if section == 1{
-            return sampleDate.count
+        else if section == 1
+        {
+            if voteData.date.count > 0
+            {
+                return voteData.date.count
+            }
+            else {return 1}
         }
-        else if section == 2{
-            return sampleLocation.count
+        else if section == 2
+        {
+            if voteData.place.count > 0
+            {
+                return voteData.place.count
+            }
+            else {return 1}
         }
         else{
             return 4
         }
     }
     
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-  
-        
-        if indexPath.section == 0{
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        if indexPath.section == 0
+        {
             let cell:TitleCell
             cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell") as! TitleCell
             cell.editTitle(text:"",placeholder:"enter title")
             return cell
-      
-
         }
-        else if indexPath.section == 1 {
-            
+        else if indexPath.section == 1
+        {
             let cell:DateCell
             cell = tableView.dequeueReusableCell(withIdentifier: "DateCell") as! DateCell
 //            let date = sampleDate[indexPath.row]
@@ -92,13 +79,12 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
         }
             
-        else if indexPath.section == 2 {
+        else if indexPath.section == 2
+        {
             let cell:LocationCell
             cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
-            cell.LocationField.text = sampleLocation[indexPath.row]
+            cell.LocationField.text = voteData.place[indexPath.row]?.placeName
             return cell
-
-            
         }
         else{
             let cell:OptionCell
@@ -140,7 +126,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let addLocaBtn = UIButton(type: UIButtonType.contactAdd)
         addLocaBtn.backgroundColor = UIColor.clear
         addLocaBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
-        addLocaBtn.addTarget(self, action: #selector(self.addRow_location), for: UIControlEvents.touchUpInside)
+        addLocaBtn.addTarget(self, action: #selector(self.addRow_place), for: UIControlEvents.touchUpInside)
         
         if section == 0{
             
@@ -168,18 +154,16 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    
     func addRow_date(_: UIButton)
     {
-        print("date")
-        sampleDate += [Date(Start:"20161115", End:"20161116")]
+        var date : MeetingDate = MeetingDate()
+        voteData.date[voteData.date.count] = date
         AddVoteTable.reloadData()
-      
     }
-    func addRow_location(_:UIButton)
+    func addRow_place(_:UIButton)
     {
-        print("loca")
-        sampleLocation += ["D station"]
+        var place : MeetingPlace = MeetingPlace()
+        voteData.place[voteData.place.count] = place
         AddVoteTable.reloadData()
     }
     
@@ -196,16 +180,17 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if(editingStyle == UITableViewCellEditingStyle.delete) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if(editingStyle == UITableViewCellEditingStyle.delete)
+        {
             if(indexPath.section == 1)
             {
-                sampleDate.remove(at: indexPath.row)
+                voteData.date.remove(at: [indexPath : voteData.date[indexPath]])
             }
             else if (indexPath.section == 2)
             {
-                sampleLocation.remove(at: indexPath.row)
+                voteData.remove(at: indexPath.row)
             }
             AddVoteTable.reloadData()
         }

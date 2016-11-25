@@ -33,22 +33,23 @@ class VoteName
 
 class MeetingDate
 {
-    var startDate : NSDate!
-    var endDate : NSDate!
+    var startDate : Date?
+    var endDate : Date?
     
-    init(startDate : NSDate, endDate : NSDate)
+    init()
     {
-        self.startDate = startDate
-        self.endDate = endDate
+        self.startDate = nil
+        self.endDate = nil
     }
 }
 
 class MeetingPlace
 {
-    var placeName : String!
+    var placeName : String?
     
-    init(placeName : String) {
-        self.placeName = placeName
+    init()
+    {
+        self.placeName = nil
     }
 }
 
@@ -63,21 +64,17 @@ class Vote
     var date : [Int : MeetingDate]
     var place : [Int : MeetingPlace]
     
-    init(name : VoteName, date : [Int : MeetingDate], place : [Int : MeetingPlace])
+    init()
     {
-        self.name = name
-        self.date = date
-        self.place = place
+        self.name = VoteName(name: "투표 이름")
+        self.date = [:]
+        self.place = [:]
     }
 }
 
 var voteName : VoteName = VoteName.init(name: "에러 없음")
 var meetingDate : [Int : MeetingDate] = [:]
 var meetingPlace : [Int : MeetingPlace] = [:]
-
-var vote : Vote = Vote.init(name: voteName, date: meetingDate, place: meetingPlace)
-
-
 
 
 

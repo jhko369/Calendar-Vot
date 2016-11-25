@@ -15,6 +15,7 @@ class DateCell: UITableViewCell {
     var datePickerView:UIView = UIView() //datePicker, doneBtn 포함하는 inputView
     var datePicker:UIDatePicker = UIDatePicker()
     var doneBtn = UIButton()
+    var startDate:Date? = nil
     
     
     
@@ -43,6 +44,11 @@ class DateCell: UITableViewCell {
         datePickerView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height:240))
         datePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.frame.size.width , height: 200))
         datePicker.datePickerMode = UIDatePickerMode.dateAndTime
+        if(startend == "end" && startDate != nil)
+        {
+            datePicker.date = startDate!
+            datePicker.minimumDate = startDate!
+        }
         datePicker.minuteInterval = 5
         datePickerView.addSubview(datePicker)
         
@@ -65,6 +71,7 @@ class DateCell: UITableViewCell {
 
         if startend == "start"
         {
+            startDate = sender.date
             startField.text = dateFormatter.string(from: sender.date)
         }
         else

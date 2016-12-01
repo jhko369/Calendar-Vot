@@ -41,6 +41,7 @@ class MeetingDate
         self.startDate = nil
         self.endDate = nil
     }
+
 }
 
 class MeetingPlace

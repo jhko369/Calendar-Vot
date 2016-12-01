@@ -18,6 +18,20 @@
 		EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
 		EB1757301DDD8AF200A07263 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572F1DDD8AF200A07263 /* TitleCell.swift */; };
 		EB1757321DDD8B2B00A07263 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757311DDD8B2B00A07263 /* LocationCell.swift */; };
+		EB66BAE01DEFE77D004AC729 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB66BADF1DEFE77D004AC729 /* Messages.framework */; };
+		EB66BAE31DEFE77D004AC729 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66BAE21DEFE77D004AC729 /* MessagesViewController.swift */; };
+		EB66BAE61DEFE77D004AC729 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB66BAE41DEFE77D004AC729 /* MainInterface.storyboard */; };
+		EB66BAE81DEFE77D004AC729 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB66BAE71DEFE77D004AC729 /* Assets.xcassets */; };
+		EB66BAEC1DEFE77D004AC729 /* CalendarVotMessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EB66BADD1DEFE77D004AC729 /* CalendarVotMessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EB66BAF11DEFE78D004AC729 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE01DD549240097FC9C /* Main.storyboard */; };
+		EB66BAF31DEFEF6D004AC729 /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */; };
+		EB66BAF41DEFEF6D004AC729 /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */; };
+		EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757291DDD7FC800A07263 /* AddViewController.swift */; };
+		EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
+		EB66BAF71DF00406004AC729 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572F1DDD8AF200A07263 /* TitleCell.swift */; };
+		EB66BAF81DF00408004AC729 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757311DDD8B2B00A07263 /* LocationCell.swift */; };
+		EB66BAF91DF0040A004AC729 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */; };
+		EB66BAFA1DF0040D004AC729 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083E0A1DD549460097FC9C /* Client.swift */; };
 		EB8FD2AA1DDD979C00D23B55 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +50,28 @@
 			remoteGlobalIDString = 4C083DD81DD549240097FC9C;
 			remoteInfo = "Calendar Vot";
 		};
+		EB66BAEA1DEFE77D004AC729 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C083DD11DD549240097FC9C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB66BADC1DEFE77D004AC729;
+			remoteInfo = CalendarVotMessagesExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EB66BAF01DEFE77D004AC729 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EB66BAEC1DEFE77D004AC729 /* CalendarVotMessagesExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4C083DD91DD549240097FC9C /* Calendar Vot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar Vot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +91,13 @@
 		EB17572D1DDD8AE300A07263 /* DateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		EB17572F1DDD8AF200A07263 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		EB1757311DDD8B2B00A07263 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		EB66BADD1DEFE77D004AC729 /* CalendarVotMessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CalendarVotMessagesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB66BADF1DEFE77D004AC729 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		EB66BAE21DEFE77D004AC729 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		EB66BAE51DEFE77D004AC729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		EB66BAE71DEFE77D004AC729 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB66BAE91DEFE77D004AC729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +123,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB66BADA1DEFE77D004AC729 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB66BAE01DEFE77D004AC729 /* Messages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -90,6 +140,8 @@
 				4C083DDB1DD549240097FC9C /* Calendar Vot */,
 				4C083DF01DD549240097FC9C /* Calendar VotTests */,
 				4C083DFB1DD549240097FC9C /* Calendar VotUITests */,
+				EB66BAE11DEFE77D004AC729 /* CalendarVotMessagesExtension */,
+				EB66BADE1DEFE77D004AC729 /* Frameworks */,
 				4C083DDA1DD549240097FC9C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +152,7 @@
 				4C083DD91DD549240097FC9C /* Calendar Vot.app */,
 				4C083DED1DD549240097FC9C /* Calendar VotTests.xctest */,
 				4C083DF81DD549240097FC9C /* Calendar VotUITests.xctest */,
+				EB66BADD1DEFE77D004AC729 /* CalendarVotMessagesExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +171,7 @@
 				EB17572F1DDD8AF200A07263 /* TitleCell.swift */,
 				EB1757311DDD8B2B00A07263 /* LocationCell.swift */,
 				EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */,
+				EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */,
 			);
 			path = "Calendar Vot";
 			sourceTree = "<group>";
@@ -140,6 +194,25 @@
 			path = "Calendar VotUITests";
 			sourceTree = "<group>";
 		};
+		EB66BADE1DEFE77D004AC729 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB66BADF1DEFE77D004AC729 /* Messages.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB66BAE11DEFE77D004AC729 /* CalendarVotMessagesExtension */ = {
+			isa = PBXGroup;
+			children = (
+				EB66BAE21DEFE77D004AC729 /* MessagesViewController.swift */,
+				EB66BAE41DEFE77D004AC729 /* MainInterface.storyboard */,
+				EB66BAE71DEFE77D004AC729 /* Assets.xcassets */,
+				EB66BAE91DEFE77D004AC729 /* Info.plist */,
+			);
+			path = CalendarVotMessagesExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,10 +223,12 @@
 				4C083DD51DD549240097FC9C /* Sources */,
 				4C083DD61DD549240097FC9C /* Frameworks */,
 				4C083DD71DD549240097FC9C /* Resources */,
+				EB66BAF01DEFE77D004AC729 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EB66BAEB1DEFE77D004AC729 /* PBXTargetDependency */,
 			);
 			name = "Calendar Vot";
 			productName = "Calendar Vot";
@@ -196,6 +271,23 @@
 			productReference = 4C083DF81DD549240097FC9C /* Calendar VotUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		EB66BADC1DEFE77D004AC729 /* CalendarVotMessagesExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB66BAEF1DEFE77D004AC729 /* Build configuration list for PBXNativeTarget "CalendarVotMessagesExtension" */;
+			buildPhases = (
+				EB66BAD91DEFE77D004AC729 /* Sources */,
+				EB66BADA1DEFE77D004AC729 /* Frameworks */,
+				EB66BADB1DEFE77D004AC729 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalendarVotMessagesExtension;
+			productName = CalendarVotMessagesExtension;
+			productReference = EB66BADD1DEFE77D004AC729 /* CalendarVotMessagesExtension.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,6 +312,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4C083DD81DD549240097FC9C;
 					};
+					EB66BADC1DEFE77D004AC729 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 4C083DD41DD549240097FC9C /* Build configuration list for PBXProject "Calendar Vot" */;
@@ -238,6 +334,7 @@
 				4C083DD81DD549240097FC9C /* Calendar Vot */,
 				4C083DEC1DD549240097FC9C /* Calendar VotTests */,
 				4C083DF71DD549240097FC9C /* Calendar VotUITests */,
+				EB66BADC1DEFE77D004AC729 /* CalendarVotMessagesExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +364,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB66BADB1DEFE77D004AC729 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB66BAF11DEFE78D004AC729 /* Main.storyboard in Resources */,
+				EB66BAE81DEFE77D004AC729 /* Assets.xcassets in Resources */,
+				EB66BAE61DEFE77D004AC729 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -274,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB66BAF31DEFEF6D004AC729 /* VoteViewController.swift in Sources */,
 				EB1757301DDD8AF200A07263 /* TitleCell.swift in Sources */,
 				EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */,
 				EB8FD2AA1DDD979C00D23B55 /* OptionCell.swift in Sources */,
@@ -300,6 +408,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB66BAD91DEFE77D004AC729 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB66BAF81DF00408004AC729 /* LocationCell.swift in Sources */,
+				EB66BAF41DEFEF6D004AC729 /* VoteViewController.swift in Sources */,
+				EB66BAF91DF0040A004AC729 /* OptionCell.swift in Sources */,
+				EB66BAE31DEFE77D004AC729 /* MessagesViewController.swift in Sources */,
+				EB66BAF71DF00406004AC729 /* TitleCell.swift in Sources */,
+				EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */,
+				EB66BAFA1DF0040D004AC729 /* Client.swift in Sources */,
+				EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -312,6 +435,11 @@
 			isa = PBXTargetDependency;
 			target = 4C083DD81DD549240097FC9C /* Calendar Vot */;
 			targetProxy = 4C083DF91DD549240097FC9C /* PBXContainerItemProxy */;
+		};
+		EB66BAEB1DEFE77D004AC729 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB66BADC1DEFE77D004AC729 /* CalendarVotMessagesExtension */;
+			targetProxy = EB66BAEA1DEFE77D004AC729 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -330,6 +458,14 @@
 				4C083DE61DD549240097FC9C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EB66BAE41DEFE77D004AC729 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB66BAE51DEFE77D004AC729 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -431,6 +567,7 @@
 		4C083E021DD549240097FC9C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Calendar Vot/Info.plist";
@@ -444,6 +581,7 @@
 		4C083E031DD549240097FC9C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Calendar Vot/Info.plist";
@@ -508,6 +646,32 @@
 			};
 			name = Release;
 		};
+		EB66BAED1DEFE77D004AC729 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				INFOPLIST_FILE = CalendarVotMessagesExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "YnJ.Calendar-Vot.CalendarVotMessagesExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EB66BAEE1DEFE77D004AC729 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				INFOPLIST_FILE = CalendarVotMessagesExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "YnJ.Calendar-Vot.CalendarVotMessagesExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -546,6 +710,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EB66BAEF1DEFE77D004AC729 /* Build configuration list for PBXNativeTarget "CalendarVotMessagesExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB66BAED1DEFE77D004AC729 /* Debug */,
+				EB66BAEE1DEFE77D004AC729 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

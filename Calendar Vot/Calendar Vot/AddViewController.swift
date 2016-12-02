@@ -1,18 +1,15 @@
-//
-//  AddViewController.swift
-//  Calendar Vot
-//
-//  Created by owner on 2016. 11. 17..
-//  Copyright © 2016년 Neobono_Mac1. All rights reserved.
-//
-
 import UIKit
 
 class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var AddVoteTable: UITableView!
-
-    var voteData : Vote = Vote() // 데이터 객체
+    @IBAction func VoteSettingDone(_ sender: AnyObject)
+    {
+        
+    }
+    
+    public var voteData : Vote = Vote() // 데이터 객체
+    
     let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
 
     override func viewDidLoad()
@@ -28,7 +25,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.didReceiveMemoryWarning()
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
         return 4
     }
     
@@ -40,19 +38,11 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         else if section == 1
         {
-            if voteData.date.count > 0
-            {
-                return voteData.date.count
-            }
-            else {return 1}
+            return voteData.date.count
         }
         else if section == 2
         {
-            if voteData.place.count > 0
-            {
-                return voteData.place.count
-            }
-            else {return 1}
+            return voteData.place.count
         }
         else{
             return 4
@@ -72,9 +62,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             let cell:DateCell
             cell = tableView.dequeueReusableCell(withIdentifier: "DateCell") as! DateCell
-//            let date = sampleDate[indexPath.row]
-//            let datetext:String = date.Start + " - " + date.End
-//            cell.DateText.text = datetext
+            cell.index = indexPath.row
             return cell
 
         }
@@ -83,7 +71,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             let cell:LocationCell
             cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
-            cell.LocationField.text = voteData.place[indexPath.row]?.placeName
+            cell.index = indexPath.row
             return cell
         }
         else{
@@ -97,10 +85,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     }
     
-
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
         var height : CGFloat
         height = 40
         return height
@@ -128,29 +114,30 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         addLocaBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
         addLocaBtn.addTarget(self, action: #selector(self.addRow_place), for: UIControlEvents.touchUpInside)
         
-        if section == 0{
-            
+        if section == 0
+        {
             title.text = "Title"
-            
-        
-        }else if section == 1 {
-            title.text = "Date"
-            headerView?.addSubview(addDateBtn)
-
-
-        
-        }else if section == 2 {
-            title.text = "Location"
-            headerView?.addSubview(addLocaBtn)
-
-        
-        }else{
-            title.text = "Option"
-      
         }
         
-            headerView?.addSubview(title)
-            return headerView
+        else if section == 1
+        {
+            title.text = "Date"
+            headerView?.addSubview(addDateBtn)
+        }
+        
+        else if section == 2
+        {
+            title.text = "Location"
+            headerView?.addSubview(addLocaBtn)
+        }
+        
+        else
+        {
+            title.text = "Option"
+        }
+        
+        headerView?.addSubview(title)
+        return headerView
         
     }
     
@@ -160,9 +147,11 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         voteData.date[voteData.date.count] = date
         AddVoteTable.reloadData()
     }
+    
     func addRow_place(_:UIButton)
     {
         var place : MeetingPlace = MeetingPlace()
+        
         voteData.place[voteData.place.count] = place
         AddVoteTable.reloadData()
     }
@@ -177,7 +166,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             return false
         }
-        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
@@ -196,32 +184,12 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             AddVoteTable.reloadData()
         }
     }
-
     
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    func CheckDate(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+    {
+        if(indexPath.section == 1)
+        {
+         
+        }
+    }
 }

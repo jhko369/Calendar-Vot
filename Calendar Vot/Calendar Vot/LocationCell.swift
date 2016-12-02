@@ -10,10 +10,14 @@ import UIKit
 
 class LocationCell: UITableViewCell {
 
+    var index : Int = 0
     @IBOutlet weak var LocationField: UITextField!
-    override func awakeFromNib() {
+    
+    
+    
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

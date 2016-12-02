@@ -8,14 +8,15 @@
 
 import UIKit
 
-class DateCell: UITableViewCell {
-
-   
+class DateCell: UITableViewCell
+{
+    var index : Int = 0
     var startend:String = ""
     var datePickerView:UIView = UIView() //datePicker, doneBtn 포함하는 inputView
     var datePicker:UIDatePicker = UIDatePicker()
     var doneBtn = UIButton()
     var startDate:Date? = nil
+    var endDate:Date? = nil
     
     @IBOutlet weak var startField: UITextField!
     @IBAction func startFieldEditing(_ sender: UITextField)
@@ -32,7 +33,6 @@ class DateCell: UITableViewCell {
         showDatePicker()
         sender.inputView = datePickerView
     }
-    
     
     func showDatePicker()
     {
@@ -76,11 +76,12 @@ class DateCell: UITableViewCell {
         }
         else
         {
+            endDate = sender.date
+            
             endField.text = dateFormatter.string(from: sender.date)
         }
         
     }
-    
     
     func doneButton(sender:UIButton)
     {
@@ -92,20 +93,16 @@ class DateCell: UITableViewCell {
         {
             endField.resignFirstResponder()
         }
-        
-
-
     }
     
-    override func awakeFromNib() {
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool)
+    {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

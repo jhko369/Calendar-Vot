@@ -70,6 +70,23 @@ class Vote
         self.name = VoteName(name: "투표 이름")
         self.date = [:]
         self.place = [:]
+        
+        AddDate()
+        AddPlace()
+    }
+    
+    func AddDate()
+    {
+        var newDate : MeetingDate = MeetingDate()
+        
+        self.date[self.date.count] = newDate
+    }
+    
+    func AddPlace()
+    {
+        var newPlace : MeetingPlace = MeetingPlace()
+        
+        self.place[self.place.count] = newPlace
     }
 }
 

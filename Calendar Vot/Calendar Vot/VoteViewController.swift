@@ -25,16 +25,17 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     let dateFormatter = DateFormatter()
 
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
        
         VoteTable.dataSource = self
         VoteTable.delegate = self
         dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
-        
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
     

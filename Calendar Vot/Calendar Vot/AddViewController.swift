@@ -8,7 +8,9 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    public var voteData : Vote = Vote() // 데이터 객체
+    var voteData : Vote = Vote() // 데이터 객체
+    var dateCount : Int = 0
+    var locationCount : Int = 0
     
     let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
 
@@ -107,12 +109,10 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let addDateBtn = UIButton(type: UIButtonType.contactAdd)
         addDateBtn.backgroundColor = UIColor.clear
         addDateBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
-        addDateBtn.addTarget(self, action: #selector(self.addRow_date), for: UIControlEvents.touchUpInside)
         
         let addLocaBtn = UIButton(type: UIButtonType.contactAdd)
         addLocaBtn.backgroundColor = UIColor.clear
         addLocaBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
-        addLocaBtn.addTarget(self, action: #selector(self.addRow_place), for: UIControlEvents.touchUpInside)
         
         if section == 0
         {
@@ -143,16 +143,13 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func addRow_date(_: UIButton)
     {
-        var date : MeetingDate = MeetingDate()
-        voteData.date[voteData.date.count] = date
+        dateCount += 1
         AddVoteTable.reloadData()
     }
     
     func addRow_place(_:UIButton)
     {
-        var place : MeetingPlace = MeetingPlace()
-        
-        voteData.place[voteData.place.count] = place
+        locationCount += 1
         AddVoteTable.reloadData()
     }
     
@@ -174,11 +171,11 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             if(indexPath.section == 1)
             {
-                voteData.date[indexPath.row] = nil
+                dateCount -= 1
             }
             else if (indexPath.section == 2)
             {
-                voteData.place[indexPath.row] = nil
+                locationCount -= 1
             }
             
             AddVoteTable.reloadData()
@@ -187,9 +184,15 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func CheckDate(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
     {
-        if(indexPath.section == 1)
+        for section in 0..<numberOfSections(in: tableView)
         {
-         
+            if(section == 1)
+            {
+                for row in 0..<dateCount
+                {
+                    
+                }
+            }
         }
     }
 }

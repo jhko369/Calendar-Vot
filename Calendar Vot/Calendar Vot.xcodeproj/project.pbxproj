@@ -16,7 +16,6 @@
 		EB17572A1DDD7FC800A07263 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757291DDD7FC800A07263 /* AddViewController.swift */; };
 		EB17572C1DDD837000A07263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB17572B1DDD837000A07263 /* Images.xcassets */; };
 		EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
-		EB1757301DDD8AF200A07263 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572F1DDD8AF200A07263 /* TitleCell.swift */; };
 		EB1757321DDD8B2B00A07263 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757311DDD8B2B00A07263 /* LocationCell.swift */; };
 		EB66BAE01DEFE77D004AC729 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB66BADF1DEFE77D004AC729 /* Messages.framework */; };
 		EB66BAE31DEFE77D004AC729 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66BAE21DEFE77D004AC729 /* MessagesViewController.swift */; };
@@ -28,7 +27,6 @@
 		EB66BAF41DEFEF6D004AC729 /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */; };
 		EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757291DDD7FC800A07263 /* AddViewController.swift */; };
 		EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
-		EB66BAF71DF00406004AC729 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572F1DDD8AF200A07263 /* TitleCell.swift */; };
 		EB66BAF81DF00408004AC729 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757311DDD8B2B00A07263 /* LocationCell.swift */; };
 		EB66BAF91DF0040A004AC729 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */; };
 		EB66BAFA1DF0040D004AC729 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083E0A1DD549460097FC9C /* Client.swift */; };
@@ -89,7 +87,6 @@
 		EB1757291DDD7FC800A07263 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		EB17572B1DDD837000A07263 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB17572D1DDD8AE300A07263 /* DateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
-		EB17572F1DDD8AF200A07263 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		EB1757311DDD8B2B00A07263 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		EB66BADD1DEFE77D004AC729 /* CalendarVotMessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CalendarVotMessagesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB66BADF1DEFE77D004AC729 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
@@ -168,7 +165,6 @@
 				EB1757291DDD7FC800A07263 /* AddViewController.swift */,
 				EB17572B1DDD837000A07263 /* Images.xcassets */,
 				EB17572D1DDD8AE300A07263 /* DateCell.swift */,
-				EB17572F1DDD8AF200A07263 /* TitleCell.swift */,
 				EB1757311DDD8B2B00A07263 /* LocationCell.swift */,
 				EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */,
 				EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */,
@@ -382,7 +378,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB66BAF31DEFEF6D004AC729 /* VoteViewController.swift in Sources */,
-				EB1757301DDD8AF200A07263 /* TitleCell.swift in Sources */,
 				EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */,
 				EB8FD2AA1DDD979C00D23B55 /* OptionCell.swift in Sources */,
 				4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */,
@@ -416,7 +411,6 @@
 				EB66BAF41DEFEF6D004AC729 /* VoteViewController.swift in Sources */,
 				EB66BAF91DF0040A004AC729 /* OptionCell.swift in Sources */,
 				EB66BAE31DEFE77D004AC729 /* MessagesViewController.swift in Sources */,
-				EB66BAF71DF00406004AC729 /* TitleCell.swift in Sources */,
 				EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */,
 				EB66BAFA1DF0040D004AC729 /* Client.swift in Sources */,
 				EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */,
@@ -718,6 +712,7 @@
 				EB66BAEE1DEFE77D004AC729 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

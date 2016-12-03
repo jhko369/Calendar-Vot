@@ -18,12 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="acf-Wh-Fn5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="acf-Wh-Fn5">
                                 <frame key="frameInset" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="sGS-7Z-OVq">
-                                    <rect key="frame" x="0.0" y="250" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="260" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <items>
                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2yF-Sy-RLY"/>
@@ -140,7 +140,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="0.33671339900000002" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="acf-Wh-Fn5" firstAttribute="top" secondItem="Ujx-30-iek" secondAttribute="bottom" id="gaD-5F-aBj"/>
+                            <constraint firstItem="nGj-J4-xdt" firstAttribute="top" secondItem="acf-Wh-Fn5" secondAttribute="bottom" id="8Dq-wc-Vnd"/>
+                            <constraint firstItem="acf-Wh-Fn5" firstAttribute="leading" secondItem="RQi-sq-Ulk" secondAttribute="leading" id="CqO-Hm-Hsi"/>
+                            <constraint firstAttribute="trailing" secondItem="acf-Wh-Fn5" secondAttribute="trailing" id="Div-4n-0tK"/>
+                            <constraint firstItem="acf-Wh-Fn5" firstAttribute="top" secondItem="Ujx-30-iek" secondAttribute="bottom" id="tkd-Wx-9eT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Calenar Vot" id="g96-lb-vgh"/>
@@ -164,9 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="pet-n9-rmK">
-                                <frame key="frameInset" minX="0.0%" minY="0.0%" width="100.00%" height="100.00%"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="pet-n9-rmK">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Vsd-Y3-ggf">
@@ -243,6 +244,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pet-n9-rmK" secondAttribute="trailing" id="7uf-wR-Xhm"/>
+                            <constraint firstItem="pet-n9-rmK" firstAttribute="top" secondItem="9qn-LK-ChC" secondAttribute="top" id="8DS-Bu-sfy"/>
+                            <constraint firstItem="pet-n9-rmK" firstAttribute="leading" secondItem="9qn-LK-ChC" secondAttribute="leading" id="FuV-DL-uRS"/>
+                            <constraint firstItem="6dC-DR-fJs" firstAttribute="top" secondItem="pet-n9-rmK" secondAttribute="bottom" id="oMm-gQ-7h0"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="VoteTable" destination="pet-n9-rmK" id="xct-Sw-8gP"/>

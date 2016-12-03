@@ -5,7 +5,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var AddVoteTable: UITableView!
     @IBAction func VoteSettingDone(_ sender: AnyObject)
     {
-        
+        saveData()
     }
     
     var voteData : Vote = Vote() // 데이터 객체
@@ -108,10 +108,14 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let addDateBtn = UIButton(type: UIButtonType.contactAdd)
         addDateBtn.backgroundColor = UIColor.clear
         addDateBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
-        
         let addLocaBtn = UIButton(type: UIButtonType.contactAdd)
         addLocaBtn.backgroundColor = UIColor.clear
         addLocaBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
+        
+        addDateBtn.addTarget(self, action: #selector(self.addRow_date), for: UIControlEvents.touchUpInside)
+        addLocaBtn.addTarget(self, action: #selector(self.addRow_place), for: UIControlEvents.touchUpInside)
+        
+        
         
         if section == 0
         {
@@ -140,10 +144,11 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    func addRow_date(_: UIButton)
+    func addRow_date( _: UIButton)
     {
         dateCount += 1
         AddVoteTable.reloadData()
+
     }
     
     func addRow_place(_:UIButton)
@@ -152,52 +157,33 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         AddVoteTable.reloadData()
     }
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        
-//        if(indexPath.section == 1 || indexPath.section == 2)
-//        {
-//            return true
-//        }
-//        else
-//        {
-//            return false
-//        }
-//    }
-//    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-//    {
-//        if(editingStyle == UITableViewCellEditingStyle.delete)
-//        {
-//            if(indexPath.section == 1)
-//            {
-//                dateCount -= 1
-//            }
-//            else if (indexPath.section == 2)
-//            {
-//                locationCount -= 1
-//            }
-//            
-//            AddVoteTable.reloadData()
-//        }
-//    }
-//    
-    
-    
-    func CheckDate(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+
+
+    func saveData()
     {
-        for section in 0..<numberOfSections(in: tableView)
-        {
-            if(section == 1)
-            {
-                for row in 0..<dateCount
-                {
-                                  }
-            }
+        for section in 0..<AddVoteTable.numberOfSections {
             
-            if(section == 2)
-            {
+            for row in 0..<AddVoteTable.numberOfRows(inSection: section) {
                 
+                let indexPath = IndexPath(row: row, section: section)
+                if(section == 1)
+                {
+                    let cell:DateCell = AddVoteTable.cellForRow(at: indexPath) as! DateCell
+                    if(cell.startField.text != nil && cell.endField.text != nil)
+                    {
+                        //Vote 인스턴스의 날짜 목록에 추가
+                    }
+                }
+                else if(section == 2)
+                {
+                    let cell:LocationCell = AddVoteTable.cellForRow(at: indexPath) as! LocationCell
+                    if(cell.LocationField.text != nil)
+                    {
+                        //Vote 인스턴스의 장소 목록에 추가
+                    }
+                }
             }
         }
+        
     }
 }

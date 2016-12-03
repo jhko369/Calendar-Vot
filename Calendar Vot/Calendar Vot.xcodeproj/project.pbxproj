@@ -157,16 +157,16 @@
 		4C083DDB1DD549240097FC9C /* Calendar Vot */ = {
 			isa = PBXGroup;
 			children = (
+				EB17572B1DDD837000A07263 /* Images.xcassets */,
 				4C083DDC1DD549240097FC9C /* AppDelegate.swift */,
 				4C083DE01DD549240097FC9C /* Main.storyboard */,
 				4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */,
 				4C083DE81DD549240097FC9C /* Info.plist */,
 				4C083E0A1DD549460097FC9C /* Client.swift */,
-				EB1757291DDD7FC800A07263 /* AddViewController.swift */,
-				EB17572B1DDD837000A07263 /* Images.xcassets */,
 				EB17572D1DDD8AE300A07263 /* DateCell.swift */,
 				EB1757311DDD8B2B00A07263 /* LocationCell.swift */,
 				EB8FD2A91DDD979C00D23B55 /* OptionCell.swift */,
+				EB1757291DDD7FC800A07263 /* AddViewController.swift */,
 				EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */,
 			);
 			path = "Calendar Vot";

@@ -6,14 +6,6 @@
 //  Copyright © 2016년 Neobono_Mac1. All rights reserved.
 //
 
-//
-//  MakeOptionModule.swift
-//  Project_Jwa_Team
-//
-//  Created by Neobono_Mac1 on 2016. 11. 10..
-//  Copyright © 2016년 Neobono_Mac1. All rights reserved.
-//
-
 import Foundation
 
 class VoteName
@@ -64,12 +56,18 @@ class Vote
     var name : VoteName
     var date : [Int : MeetingDate]
     var place : [Int : MeetingPlace]
+    var multiSelect:Bool
+    var addItem:Bool
+    var finishTime:Bool
     
     init()
     {
         self.name = VoteName(name: "투표 이름")
         self.date = [:]
         self.place = [:]
+        self.multiSelect = false
+        self.addItem = false
+        self.finishTime = false
         
         AddDate()
         AddPlace()

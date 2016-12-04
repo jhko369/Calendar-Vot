@@ -9,10 +9,16 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     var voteData : Vote = Vote() // 데이터 객체
-    var dateCount : Int = 3
-    var locationCount : Int = 3
+    var dateCount : Int = 2
+    var locationCount : Int = 2
     
-    let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
+    let dateFormatter = DateFormatter()
+    let currentDate:Date = Date.init()
+    let finishDate:Date = Date.init(timeIntervalSinceNow: 60*60*24)
+
+
+
+    let options = ["복수 선택 허용","선택지 추가 허용", "마감기한 설정"]
 
     override func viewDidLoad()
     {
@@ -20,6 +26,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 		
         AddVoteTable.dataSource = self
         AddVoteTable.delegate = self
+        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+
     }
 
     override func didReceiveMemoryWarning()
@@ -47,7 +55,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             return locationCount
         }
         else{
-            return 4
+            return 3
         }
     }
     
@@ -76,11 +84,9 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             return cell
         }
         else{
-            let cell:OptionCell
-            cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell") as! OptionCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
             let option = options[indexPath.row]
-            cell.OptionText.text = option
-            
+            cell.textLabel?.text = option
             return cell
         }
 
@@ -119,6 +125,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         if section == 0
         {
+
             title.text = "Title"
         }
         
@@ -144,6 +151,28 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.section == 3)
+        {
+            let cell = tableView.cellForRow(at: indexPath)!
+            if (cell.accessoryType == UITableViewCellAccessoryType.none){
+                print("dd")
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            }
+            else
+            {print("xx")
+                cell.accessoryType = UITableViewCellAccessoryType.none
+            }
+            
+            let tempindex = IndexPath(row: 2, section: 3) // 마감 기한 설정
+            if(indexPath == tempindex)
+            {
+                
+            }
+
+        }
+    }
+    
     func addRow_date( _: UIButton)
     {
         dateCount += 1
@@ -161,6 +190,9 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     func saveData()
     {
+        //Vote 인스턴스에 투표 제목 저장
+        //Vote 인스턴스에 옵션 상태 저장
+        
         for section in 0..<AddVoteTable.numberOfSections {
             
             for row in 0..<AddVoteTable.numberOfRows(inSection: section) {
@@ -181,6 +213,25 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     {
                         //Vote 인스턴스의 장소 목록에 추가
                     }
+                }
+                else if(section == 3)
+                {
+                    //Vote 인스턴스에 옵션 정보 저장 .
+                    let cell = AddVoteTable.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
+                    if(row == 0 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    {
+                        voteData.multiSelect = true;
+                    }
+                    else if(row == 1 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    {
+                        voteData.addItem = true;
+                    }
+                    else if(row == 2 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    {
+                        voteData.finishTime = true;
+                    }
+                    
+
                 }
             }
         }

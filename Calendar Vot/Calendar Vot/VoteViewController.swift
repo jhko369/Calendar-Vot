@@ -12,18 +12,21 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
  {
     
     @IBOutlet weak var VoteTable: UITableView!
+    
     //옵션정보
     var multiSelect:Bool = true //다중선택 허용?
-    var addItem:Bool = true //항목추가 허용?
-    
+    var addItem:Bool = false //항목추가 허용?
     var voteData : Vote = Vote() // 데이터 객체
 
-    let votetitle:String = "투표"
+    let votetitle:String = "팀프로젝트 회의"
     let startDate:Date = Date.init()
     let endDate:Date = Date.init()
-    let locationlist:[String] = ["A station","B station", "C station"]
+    let dateList:[String] = ["2016.12.04 20:00 ~ 2016.12.04 21:00", "2016.12.06 20:00 ~ 2016.12.06 21:00", "2016.12.09 16:00 ~ 2016.12.09 17:00"]
+    let locationlist:[String] = ["충무로역 스타벅스", "신공학관 5127"]
     let dateFormatter = DateFormatter()
 
+    var dateCount:Int = 3
+    var locationCount:Int = 2
     
     override func viewDidLoad()
     {
@@ -49,19 +52,9 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             return 1
         case 1:
-            if voteData.date.count > 0
-            {
-                /* 이런식으로 하니까.. 처음 +를 누르면 count가 1이되서 셀이 늘어나지 않음! */
-                return voteData.date.count
-            }
-            else {return 1}
-
+            return dateCount
         case 2:
-            if voteData.place.count > 0
-            {
-                return voteData.place.count
-            }
-            else {return 1}
+            return locationCount
         default:
             return 0
         }
@@ -84,14 +77,15 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
             let start:String = dateFormatter.string(from: startDate)
             let end:String = dateFormatter.string(from: endDate)
-            let StartToEnd:String =  "\(indexPath.row) ~ \(voteData.date.count)"
-            cell.textLabel?.text = StartToEnd
+            let StartToEnd:String =  start + " ~ " + end
+            cell.textLabel?.text = dateList[indexPath.row]
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
-            cell.textLabel?.text = voteData.place[indexPath.row]?.placeName
+           // cell.textLabel?.text = voteData.place[indexPath.row]?.placeName
+            cell.textLabel?.text = locationlist[indexPath.row]
             return cell
         }
     }

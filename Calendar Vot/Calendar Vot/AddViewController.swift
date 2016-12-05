@@ -2,7 +2,13 @@ import UIKit
 
 class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    
+    
+
     @IBOutlet weak var AddVoteTable: UITableView!
+    static let storyboardIdentifier = "AddView"
+    
+    
     @IBAction func VoteSettingDone(_ sender: AnyObject)
     {
         saveData()
@@ -228,7 +234,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     }
                     else if(row == 2 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
-                        voteData.finishTime = true;
+                        voteData.finishTimeSet = true;
                     }
                     
 

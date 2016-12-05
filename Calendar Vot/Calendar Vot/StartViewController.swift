@@ -2,40 +2,48 @@
 //  StartViewController.swift
 //  Calendar Vot
 //
-//  Created by owner on 2016. 12. 4..
+//  Created by owner on 2016. 12. 5..
 //  Copyright © 2016년 Neobono_Mac1. All rights reserved.
 //
 
 import UIKit
 
-class StartViewController: UITableViewController {
+class StartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    @IBOutlet weak var StartTable: UITableView!
+    
+    static let storyboardIdentifier = "StartView"
+    
     let votes:[String] = ["아이디어 회의", "회식", "중간평가"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
+        StartTable.dataSource = self
+        StartTable.delegate = self
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
     }
-
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 0){return 1}
         else {return votes.count}
     }
-
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if(indexPath.section == 0){
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddVoteCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddVoteCell", for: indexPath)
             return cell
         }
         else
@@ -44,31 +52,31 @@ class StartViewController: UITableViewController {
             cell.textLabel?.text = votes[indexPath.row]
             return cell
         }
-    
+        
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         var height : CGFloat
         height = 25
         return height
         
     }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == 0){return "add new vote"}
         else {return "history"}
     }
-
-
+    
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

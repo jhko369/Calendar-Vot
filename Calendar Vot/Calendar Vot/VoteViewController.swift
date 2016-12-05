@@ -11,13 +11,15 @@ import UIKit
 class VoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
  {
     
+   
     @IBOutlet weak var VoteTable: UITableView!
+   static let storyboardIdentifier = "VoteView"
     
-    //옵션정보
+    var voteData : Vote = Vote() // 데이터 객체
+    
+    
     var multiSelect:Bool = true //다중선택 허용?
     var addItem:Bool = false //항목추가 허용?
-    var voteData : Vote = Vote() // 데이터 객체
-
     let votetitle:String = "팀프로젝트 회의"
     let startDate:Date = Date.init()
     let endDate:Date = Date.init()

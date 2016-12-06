@@ -8,9 +8,11 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    static var voteData : Vote = Vote() // 데이터 객체
+    public static var voteData : Vote = Vote() // 데이터 객체
     var dateCount : Int = 3
     var locationCount : Int = 3
+    static var dateIndex : Int = 0
+    static var locationIndex : Int = 0
     
     let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
 
@@ -63,7 +65,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             let cell:DateCell
             cell = tableView.dequeueReusableCell(withIdentifier: "DateCell") as! DateCell
-            cell.index = indexPath.row
             return cell
 
         }
@@ -183,25 +184,16 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 //    
     
     
-    public static func CheckDate(index : Int, date : MeetingDate)
+    public static func AddDate(date : MeetingDate)
     {
-        voteData.date[index] = date
-        /*
-        for section in 0..<numberOfSections(in: tableView)
+        if(date.startDate != nil && date.endDate != nil)
         {
-            if(section == 1)
+            while voteData.date[dateIndex] == nil
             {
-                for row in 0..<dateCount
-                {
-                    tableView(<#T##tableView: UITableView##UITableView#>, cellForRowAt: <#T##IndexPath#>)
-                }
+                dateIndex += 1
             }
             
-            if(section == 2)
-            {
-                
-            }
+            voteData.date[dateIndex] = date
         }
-         */
     }
 }

@@ -16,7 +16,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     var multiSelect:Bool = true //다중선택 허용?
     var addItem:Bool = true //항목추가 허용?
     
-    var voteData : Vote = Vote() // 데이터 객체
+    //var voteData : Vote = Vote() // 데이터 객체
 
     let votetitle:String = "투표"
     let startDate:Date = Date.init()
@@ -49,17 +49,17 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             return 1
         case 1:
-            if voteData.date.count > 0
+            if AddViewController.voteData.date.count > 0
             {
                 /* 이런식으로 하니까.. 처음 +를 누르면 count가 1이되서 셀이 늘어나지 않음! */
-                return voteData.date.count
+                return AddViewController.voteData.date.count
             }
             else {return 1}
 
         case 2:
-            if voteData.place.count > 0
+            if AddViewController.voteData.place.count > 0
             {
-                return voteData.place.count
+                return AddViewController.voteData.place.count
             }
             else {return 1}
         default:
@@ -82,16 +82,16 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         else if indexPath.section == 1
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
-            let start:String = dateFormatter.string(from: startDate)
-            let end:String = dateFormatter.string(from: endDate)
-            let StartToEnd:String =  "\(indexPath.row) ~ \(voteData.date.count)"
+            let start:String = String(describing: AddViewController.voteData.date[indexPath.row]?.startDate)
+            let end:String = String(describing: AddViewController.voteData.date[indexPath.row]?.endDate)
+            let StartToEnd:String =  "\(indexPath.row) ~ \(AddViewController.voteData.date.count)"
             cell.textLabel?.text = StartToEnd
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
-            cell.textLabel?.text = voteData.place[indexPath.row]?.placeName
+            cell.textLabel?.text = AddViewController.voteData.place[indexPath.row]?.placeName
             return cell
         }
     }
@@ -156,13 +156,13 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     func addRow_date(_: UIButton)
     {
         var date : MeetingDate = MeetingDate()
-        voteData.date[voteData.date.count] = date
+        AddViewController.voteData.date[AddViewController.voteData.date.count] = date
         VoteTable.reloadData()
     }
     func addRow_place(_:UIButton)
     {
         var place : MeetingPlace = MeetingPlace()
-        voteData.place[voteData.place.count] = place
+        AddViewController.voteData.place[AddViewController.voteData.place.count] = place
         VoteTable.reloadData()
     }
     
@@ -187,11 +187,11 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 if(indexPath.section == 1)
                 {
-                    voteData.date[indexPath.row] = nil
+                AddViewController.voteData.date[indexPath.row] = nil
                 }
                 else if (indexPath.section == 2)
                 {
-                    voteData.place[indexPath.row] = nil
+                    AddViewController.voteData.place[indexPath.row] = nil
                 }
                 
                 VoteTable.reloadData()

@@ -8,7 +8,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    var voteData : Vote = Vote() // 데이터 객체
+    static var voteData : Vote = Vote() // 데이터 객체
     var dateCount : Int = 3
     var locationCount : Int = 3
     
@@ -183,15 +183,18 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 //    
     
     
-    func CheckDate(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+    public static func CheckDate(index : Int, date : MeetingDate)
     {
+        voteData.date[index] = date
+        /*
         for section in 0..<numberOfSections(in: tableView)
         {
             if(section == 1)
             {
                 for row in 0..<dateCount
                 {
-                                  }
+                    tableView(<#T##tableView: UITableView##UITableView#>, cellForRowAt: <#T##IndexPath#>)
+                }
             }
             
             if(section == 2)
@@ -199,5 +202,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 
             }
         }
+         */
     }
 }

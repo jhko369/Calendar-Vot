@@ -17,6 +17,7 @@ class DateCell: UITableViewCell
     var doneBtn = UIButton()
     var startDate:Date? = nil
     var endDate:Date? = nil
+    var meetingDate : MeetingDate?
     
     @IBOutlet weak var startField: UITextField!
     @IBAction func startFieldEditing(_ sender: UITextField)
@@ -71,12 +72,15 @@ class DateCell: UITableViewCell
         if startend == "start"
         {
             startDate = sender.date
+            meetingDate?.startDate = sender.date
             
             startField.text = dateFormatter.string(from: sender.date)
+            
         }
         else
         {
             endDate = sender.date
+            meetingDate?.endDate = sender.date
             
             endField.text = dateFormatter.string(from: sender.date)
         }
@@ -93,6 +97,8 @@ class DateCell: UITableViewCell
         {
             endField.resignFirstResponder()
         }
+        
+        AddViewController.CheckDate(index: index, date: meetingDate!)
     }
     
     override func awakeFromNib()

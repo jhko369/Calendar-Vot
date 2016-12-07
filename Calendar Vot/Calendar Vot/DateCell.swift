@@ -10,6 +10,7 @@ import UIKit
 
 class DateCell: UITableViewCell
 {
+    var index : Int = 0
     var startend:String = ""
     var datePickerView:UIView = UIView() //datePicker, doneBtn 포함하는 inputView
     var datePicker:UIDatePicker = UIDatePicker()
@@ -97,7 +98,7 @@ class DateCell: UITableViewCell
             endField.resignFirstResponder()
         }
         
-        AddViewController.AddDate(date: meetingDate!)
+        AddViewController.CheckDate(index: index, date: meetingDate!)
     }
     
     override func awakeFromNib()

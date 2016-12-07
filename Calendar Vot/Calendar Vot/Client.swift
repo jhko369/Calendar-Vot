@@ -6,15 +6,9 @@
 //  Copyright © 2016년 Neobono_Mac1. All rights reserved.
 //
 
-//
-//  MakeOptionModule.swift
-//  Project_Jwa_Team
-//
-//  Created by Neobono_Mac1 on 2016. 11. 10..
-//  Copyright © 2016년 Neobono_Mac1. All rights reserved.
-//
-
 import Foundation
+import Messages
+
 
 class VoteName
 {
@@ -64,12 +58,22 @@ class Vote
     var name : VoteName
     var date : [Int : MeetingDate]
     var place : [Int : MeetingPlace]
+    var multiSelect:Bool // 다중선택 옵션
+    var addItem:Bool // 선택지 추가 옵션
+    var finishTimeSet:Bool // 마감시간 설정 옵션
+    var createTime:Date //투표가 만들어진 시간
+    var finishTime:Date //투표 마감시간(finishTimeSet == false -> default: createTime + 24시간)
     
     init()
     {
         self.name = VoteName(name: "투표 이름")
         self.date = [:]
         self.place = [:]
+        self.multiSelect = false
+        self.addItem = false
+        self.finishTimeSet = false
+        self.createTime = Date.init()
+        self.finishTime = Date.init(timeIntervalSinceNow: 60*60*24)
         
         AddDate()
         AddPlace()
@@ -96,6 +100,13 @@ var meetingPlace : [Int : MeetingPlace] = [:]
 
 
 
-
+//extension Vote{
+//    init?(message: MSMessage?){
+//        guard let messageURL = message?.url else { return nil }
+//        guard let urlComponents = NSURLComponents(url: messageURL, resolvingAgainstBaseURL: false), let queryItems = urlComponents.queryItems else { return nil }
+//        
+//        self.init(queryItems: queryItems)
+//    }
+//}
 
 

@@ -196,7 +196,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             if(section == 2)
             {
-                
+                //ㅎㅎ.. 죽고싶다
             }
         }
     }

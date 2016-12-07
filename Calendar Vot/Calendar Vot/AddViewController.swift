@@ -2,37 +2,19 @@ import UIKit
 
 class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    
-    
-
     @IBOutlet weak var AddVoteTable: UITableView!
-    static let storyboardIdentifier = "AddView"
-    
-    
     @IBAction func VoteSettingDone(_ sender: AnyObject)
     {
-        saveData()
+        
     }
     
-<<<<<<< HEAD
     public static var voteData : Vote = Vote() // 데이터 객체
     var dateCount : Int = 3
     var locationCount : Int = 3
     static var dateIndex : Int = 0
     static var locationIndex : Int = 0
-=======
-    var voteData : Vote = Vote() // 데이터 객체
-    var dateCount : Int = 2
-    var locationCount : Int = 2
->>>>>>> origin/master
     
-    let dateFormatter = DateFormatter()
-    let currentDate:Date = Date.init()
-    let finishDate:Date = Date.init(timeIntervalSinceNow: 60*60*24)
-
-
-
-    let options = ["복수 선택 허용","선택지 추가 허용", "마감기한 설정"]
+    let options = ["복수 선택 허용","선택지 추가 허용","익명 투표", "마감기한 설정"]
 
     override func viewDidLoad()
     {
@@ -40,8 +22,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 		
         AddVoteTable.dataSource = self
         AddVoteTable.delegate = self
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
-
     }
 
     override func didReceiveMemoryWarning()
@@ -69,7 +49,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             return locationCount
         }
         else{
-            return 3
+            return 4
         }
     }
     
@@ -97,9 +77,11 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             return cell
         }
         else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
+            let cell:OptionCell
+            cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell") as! OptionCell
             let option = options[indexPath.row]
-            cell.textLabel?.text = option
+            cell.OptionText.text = option
+            
             return cell
         }
 
@@ -127,18 +109,13 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let addDateBtn = UIButton(type: UIButtonType.contactAdd)
         addDateBtn.backgroundColor = UIColor.clear
         addDateBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
+        
         let addLocaBtn = UIButton(type: UIButtonType.contactAdd)
         addLocaBtn.backgroundColor = UIColor.clear
         addLocaBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
         
-        addDateBtn.addTarget(self, action: #selector(self.addRow_date), for: UIControlEvents.touchUpInside)
-        addLocaBtn.addTarget(self, action: #selector(self.addRow_place), for: UIControlEvents.touchUpInside)
-        
-        
-        
         if section == 0
         {
-
             title.text = "Title"
         }
         
@@ -164,33 +141,10 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.section == 3)
-        {
-            let cell = tableView.cellForRow(at: indexPath)!
-            if (cell.accessoryType == UITableViewCellAccessoryType.none){
-                print("dd")
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
-            }
-            else
-            {print("xx")
-                cell.accessoryType = UITableViewCellAccessoryType.none
-            }
-            
-            let tempindex = IndexPath(row: 2, section: 3) // 마감 기한 설정
-            if(indexPath == tempindex)
-            {
-                
-            }
-
-        }
-    }
-    
-    func addRow_date( _: UIButton)
+    func addRow_date(_: UIButton)
     {
         dateCount += 1
         AddVoteTable.reloadData()
-
     }
     
     func addRow_place(_:UIButton)
@@ -199,7 +153,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         AddVoteTable.reloadData()
     }
     
-<<<<<<< HEAD
 //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
 //        
 //        if(indexPath.section == 1 || indexPath.section == 2)
@@ -241,57 +194,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             
             voteData.date[dateIndex] = date
-=======
-
-
-    func saveData()
-    {
-        //Vote 인스턴스에 투표 제목 저장
-        //Vote 인스턴스에 옵션 상태 저장
-        
-        for section in 0..<AddVoteTable.numberOfSections {
-            
-            for row in 0..<AddVoteTable.numberOfRows(inSection: section) {
-                
-                let indexPath = IndexPath(row: row, section: section)
-                if(section == 1)
-                {
-                    let cell:DateCell = AddVoteTable.cellForRow(at: indexPath) as! DateCell
-                    if(cell.startField.text != nil && cell.endField.text != nil)
-                    {
-                        //Vote 인스턴스의 날짜 목록에 추가
-                    }
-                }
-                else if(section == 2)
-                {
-                    let cell:LocationCell = AddVoteTable.cellForRow(at: indexPath) as! LocationCell
-                    if(cell.LocationField.text != nil)
-                    {
-                        //Vote 인스턴스의 장소 목록에 추가
-                    }
-                }
-                else if(section == 3)
-                {
-                    //Vote 인스턴스에 옵션 정보 저장 .
-                    let cell = AddVoteTable.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
-                    if(row == 0 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
-                    {
-                        voteData.multiSelect = true;
-                    }
-                    else if(row == 1 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
-                    {
-                        voteData.addItem = true;
-                    }
-                    else if(row == 2 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
-                    {
-                        voteData.finishTimeSet = true;
-                    }
-                    
-
-                }
-            }
->>>>>>> origin/master
         }
-        
     }
 }

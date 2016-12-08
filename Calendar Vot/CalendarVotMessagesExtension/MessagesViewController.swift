@@ -25,8 +25,15 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
+        presentViewController(for: conversation, with: presentationStyle)
+    }
+    
+    override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
+        guard let conversation = activeConversation else { fatalError("Expected an active converstation") }
         
-        
+        // Present the view controller appropriate for the conversation and presentation style.
+        presentViewController(for: conversation, with: presentationStyle)
+
     }
     
     private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
@@ -123,11 +130,7 @@ class MessagesViewController: MSMessagesAppViewController {
         // Use this to clean up state related to the deleted message.
     }
     
-    override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        // Called before the extension transitions to a new presentation style.
-        
-        // Use this method to prepare for the change in presentation style.
-    }
+
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         // Called after the extension transitions to a new presentation style.

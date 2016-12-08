@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol StartViewControllerDelegate: class{
+    func startViewControllerDidSelectAdd()
+}
+
 class StartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
@@ -15,6 +19,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var StartTable: UITableView!
     
     static let storyboardIdentifier = "StartView"
+    weak var delegate: StartViewControllerDelegate?
     
     let votes:[String] = ["아이디어 회의", "회식", "중간평가"]
     override func viewDidLoad() {
@@ -69,15 +74,11 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else {return "history"}
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.section == 0)
+        {
+            delegate?.startViewControllerDidSelectAdd()
+        }
+    }
+
 }

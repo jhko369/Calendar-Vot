@@ -218,15 +218,15 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     let cell = AddVoteTable.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
                     if(row == 0 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
-                        voteData.multiSelect = true;
+                        voteData.multiSelect.option = "true";
                     }
                     else if(row == 1 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
-                        voteData.addItem = true;
+                        voteData.addItem.option = "true";
                     }
                     else if(row == 2 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
-                        voteData.finishTimeSet = true;
+                        voteData.finishSet.option = "true";
                     }
                 }
             }

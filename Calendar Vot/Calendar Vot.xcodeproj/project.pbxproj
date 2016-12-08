@@ -10,7 +10,8 @@
 		4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083DDC1DD549240097FC9C /* AppDelegate.swift */; };
 		4C083DE21DD549240097FC9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE01DD549240097FC9C /* Main.storyboard */; };
 		4C083DE71DD549240097FC9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */; };
-		4C083E0B1DD549460097FC9C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083E0A1DD549460097FC9C /* Client.swift */; };
+		EB1616CE1DF95A3B00CA578C /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1616CD1DF95A3B00CA578C /* Vote.swift */; };
+		EB1616CF1DF95A3B00CA578C /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1616CD1DF95A3B00CA578C /* Vote.swift */; };
 		EB17572A1DDD7FC800A07263 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757291DDD7FC800A07263 /* AddViewController.swift */; };
 		EB17572C1DDD837000A07263 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB17572B1DDD837000A07263 /* Images.xcassets */; };
 		EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
@@ -28,7 +29,6 @@
 		EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757291DDD7FC800A07263 /* AddViewController.swift */; };
 		EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
 		EB66BAF81DF00408004AC729 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757311DDD8B2B00A07263 /* LocationCell.swift */; };
-		EB66BAFA1DF0040D004AC729 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083E0A1DD549460097FC9C /* Client.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +77,7 @@
 		4C083DE81DD549240097FC9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C083DED1DD549240097FC9C /* Calendar VotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calendar VotTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C083DF81DD549240097FC9C /* Calendar VotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calendar VotUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C083E0A1DD549460097FC9C /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		EB1616CD1DF95A3B00CA578C /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		EB1757291DDD7FC800A07263 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		EB17572B1DDD837000A07263 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB17572D1DDD8AE300A07263 /* DateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
@@ -154,12 +154,12 @@
 				4C083DE01DD549240097FC9C /* Main.storyboard */,
 				4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */,
 				4C083DE81DD549240097FC9C /* Info.plist */,
-				4C083E0A1DD549460097FC9C /* Client.swift */,
 				EB17572D1DDD8AE300A07263 /* DateCell.swift */,
 				EB1757311DDD8B2B00A07263 /* LocationCell.swift */,
 				EB1757291DDD7FC800A07263 /* AddViewController.swift */,
 				EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */,
 				EB5C730B1DF92144006560D2 /* StartViewController.swift */,
+				EB1616CD1DF95A3B00CA578C /* Vote.swift */,
 			);
 			path = "Calendar Vot";
 			sourceTree = "<group>";
@@ -354,10 +354,10 @@
 				EB66BAF31DEFEF6D004AC729 /* VoteViewController.swift in Sources */,
 				EB5C730C1DF92144006560D2 /* StartViewController.swift in Sources */,
 				EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */,
+				EB1616CE1DF95A3B00CA578C /* Vote.swift in Sources */,
 				4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */,
 				EB1757321DDD8B2B00A07263 /* LocationCell.swift in Sources */,
 				EB17572A1DDD7FC800A07263 /* AddViewController.swift in Sources */,
-				4C083E0B1DD549460097FC9C /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,9 +382,9 @@
 				EB66BAF81DF00408004AC729 /* LocationCell.swift in Sources */,
 				EB5C730D1DF92144006560D2 /* StartViewController.swift in Sources */,
 				EB66BAF41DEFEF6D004AC729 /* VoteViewController.swift in Sources */,
+				EB1616CF1DF95A3B00CA578C /* Vote.swift in Sources */,
 				EB66BAE31DEFE77D004AC729 /* MessagesViewController.swift in Sources */,
 				EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */,
-				EB66BAFA1DF0040D004AC729 /* Client.swift in Sources */,
 				EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

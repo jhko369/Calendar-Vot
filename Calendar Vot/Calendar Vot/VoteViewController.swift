@@ -152,14 +152,15 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func addRow_date(_: UIButton)
     {
-        var date : MeetingDate = MeetingDate()
-        voteData.date[voteData.date.count] = date
+       // var date : MeetingDate = MeetingDate()
+       // voteData.date[voteData.date.count] = date
+        
+        dateCount += 1
         VoteTable.reloadData()
     }
     func addRow_place(_:UIButton)
     {
-        var place : MeetingPlace = MeetingPlace()
-        voteData.place[voteData.place.count] = place
+        locationCount += 1
         VoteTable.reloadData()
     }
     
@@ -184,11 +185,11 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 if(indexPath.section == 1)
                 {
-                    voteData.date[indexPath.row] = nil
+              //      voteData.date[indexPath.row] = nil
                 }
                 else if (indexPath.section == 2)
                 {
-                    voteData.place[indexPath.row] = nil
+               //     voteData.place[indexPath.row] = nil
                 }
                 
                 VoteTable.reloadData()

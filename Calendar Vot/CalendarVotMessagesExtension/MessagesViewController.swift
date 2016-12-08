@@ -47,7 +47,7 @@ class MessagesViewController: MSMessagesAppViewController {
             
             //    let voteData = Vote(message: conversation.selectedMessage) ?? Vote()
             let voteData:Vote = Vote()
-            if voteData.finishTime > Date.init()
+            if voteData.isFinished(now: Date.init()) == false
             {
                 controller = instantiateVoteViewController(with: voteData)
             }
@@ -62,20 +62,6 @@ class MessagesViewController: MSMessagesAppViewController {
             child.view.removeFromSuperview()
             child.removeFromParentViewController()
         }
-        
-        // Embed the new controller.
-        //        addChildViewController(controller)
-        //
-        //        controller.view.frame = view.bounds
-        //        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        //        view.addSubview(controller.view)
-        //
-        //        controller.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        //        controller.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        //        controller.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        //        controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        //
-        //        controller.didMove(toParentViewController: self)
     }
     
     
@@ -139,4 +125,12 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     
+}
+
+
+extension MessagesViewController: StartViewControllerDelegate{
+    //새로운 투표 추가 버튼 눌렀을 때 
+    func startViewControllerDidSelectAdd() {
+        requestPresentationStyle(.expanded)
+    }
 }

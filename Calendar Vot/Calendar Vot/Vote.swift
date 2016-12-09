@@ -85,7 +85,7 @@ class Vote{
     
     func DateDataSetting()
     {
-        
+        //
     }
     
     func LocationDataSetting()

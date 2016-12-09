@@ -199,7 +199,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if(section == 1)
                 {
                     let cell:DateCell = AddVoteTable.cellForRow(at: indexPath) as! DateCell
-                    if(cell.startField.text != nil && cell.endField.text != nil)
+                    if(cell.startField.text != nil)
                     {
                         //Vote 인스턴스의 날짜 목록에 추가
                     }

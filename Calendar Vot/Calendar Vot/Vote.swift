@@ -57,10 +57,10 @@ class Vote{
     
     static let key = "name"
     
-    var name : String = "title"
-    var date : [MeetingDate] = []
+    var voteName : String = "title"
+    var dates : [MeetingDate] = []
     var dateData : [Date : Int]!
-    var location : [MeetingLocation] = []
+    var locations : [MeetingLocation] = []
     var locationData : [String : Int]!
     var multiSelect:MultiOption!
     var addItem:AddItemOption!
@@ -93,7 +93,7 @@ class Vote{
             dateString = dateFormatter.string(from: key)
             dateCountString = String(describing: dateData[key])
             
-            date.append(MeetingDate(date : dateString + "&" + dateCountString))
+            dates.append(MeetingDate(date : dateString + "&" + dateCountString))
         }
     }
     
@@ -107,18 +107,18 @@ class Vote{
             locationString = key
             locationCountString = String(describing: locationData[key])
             
-            location.append(MeetingLocation(location: locationString + "&" + locationCountString))
+            locations.append(MeetingLocation(location: locationString + "&" + locationCountString))
         }
     }
     
     func addDate(dateItem:MeetingDate)
     {
-        self.date.append(dateItem)
+        self.dates.append(dateItem)
     }
     
     func addLocation(locationItem:MeetingLocation)
     {
-        self.location.append(locationItem)
+        self.locations.append(locationItem)
     }
     
     func isFinished(now:Date) -> Bool
@@ -131,8 +131,32 @@ class Vote{
     }
 }
 
-extension Vote{
+extension Vote
+{
+    var queryItems:[URLQueryItem]
+    {
+        var items = [URLQueryItem]()
+        
+        items.append(URLQueryItem(name: Vote.key, value: voteName))
+        
+        for date in dates
+        {
+            items.append(URLQueryItem(name: MeetingDate.key, value: date.date))
+        }
+        
+        for location in  locations
+        {
+            items.append(URLQueryItem(name: MeetingLocation.key, value: location.location))
+        }
+        
+        return items
+    }
     
-    // var queryItems:[URLQueryItem]
-    
+    init?(queryItems : [URLQueryItem])
+    {
+        for queryItem in queryItems
+        {
+            
+        }
+    }
 }

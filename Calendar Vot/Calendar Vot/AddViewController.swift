@@ -6,7 +6,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var AddVoteTable: UITableView!
     
     static let storyboardIdentifier = "AddView"
-
+    
     @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
         saveData()
         
@@ -156,12 +156,15 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if(indexPath.section == 3)
         {
             let cell = tableView.cellForRow(at: indexPath)!
-            if (cell.accessoryType == UITableViewCellAccessoryType.none){
+            
+            if (cell.accessoryType == UITableViewCellAccessoryType.none)
+            {
                 print("dd")
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             else
-            {print("xx")
+            {
+                print("xx")
                 cell.accessoryType = UITableViewCellAccessoryType.none
             }
             
@@ -193,25 +196,37 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         for section in 0..<AddVoteTable.numberOfSections {
             
-            for row in 0..<AddVoteTable.numberOfRows(inSection: section) {
-                
+            for row in 0..<AddVoteTable.numberOfRows(inSection: section)
+            {
                 let indexPath = IndexPath(row: row, section: section)
-                if(section == 1)
+                
+                if(section == 0)
+                {
+                    let cell = AddVoteTable.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
+                    
+                    voteData.name = (cell.textLabel?.text)!
+                }
+                    
+                else if(section == 1)
                 {
                     let cell:DateCell = AddVoteTable.cellForRow(at: indexPath) as! DateCell
+                    
                     if(cell.startField.text != nil)
                     {
-                        //Vote 인스턴스의 날짜 목록에 추가
+                        voteData.dateData[cell.startDate!] = 0
                     }
                 }
+                    
                 else if(section == 2)
                 {
                     let cell:LocationCell = AddVoteTable.cellForRow(at: indexPath) as! LocationCell
+                    
                     if(cell.LocationField.text != nil)
                     {
-                        //Vote 인스턴스의 장소 목록에 추가
+                        voteData.locationData[cell.LocationField.text!] = 0
                     }
                 }
+                    
                 else if(section == 3)
                 {
                     //Vote 인스턴스에 옵션 정보 저장 .

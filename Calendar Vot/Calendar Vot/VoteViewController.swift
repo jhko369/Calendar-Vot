@@ -16,28 +16,29 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     static let storyboardIdentifier = "VoteView"
     
-    var voteData : Vote = Vote() // 데이터 객체
-    
-    
-    var multiSelect:Bool = true //다중선택 허용?
+    var voteData:Vote?
+    var multiSelect:Bool = false //다중선택 허용?
     var addItem:Bool = false //항목추가 허용?
     let votetitle:String = "팀프로젝트 회의"
     let startDate:Date = Date.init()
-    let endDate:Date = Date.init()
-    let dateList:[String] = ["2016.12.04 20:00 ~ 2016.12.04 21:00", "2016.12.06 20:00 ~ 2016.12.06 21:00", "2016.12.09 16:00 ~ 2016.12.09 17:00"]
+    let datelist:[String] = ["2016.12.04 20:00", "2016.12.06 20:00", "2016.12.09 16:00"]
+    var dateCount:Int = 0
     let locationlist:[String] = ["충무로역 스타벅스", "신공학관 5127"]
+    var locationCount:Int = 0
     let dateFormatter = DateFormatter()
-    
-    var dateCount:Int = 3
-    var locationCount:Int = 2
-    
+
     override func viewDidLoad()
     {
+        //guard let voteData = voteData else { fatalError("만들어진 투표 없음") }
+        
         super.viewDidLoad()
         
         VoteTable.dataSource = self
         VoteTable.delegate = self
         dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        dateCount = datelist.count
+        locationCount = locationlist.count
+        
     }
     
     override func didReceiveMemoryWarning()
@@ -78,10 +79,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         else if indexPath.section == 1
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
-            let start:String = dateFormatter.string(from: startDate)
-            let end:String = dateFormatter.string(from: endDate)
-            let StartToEnd:String =  start + " ~ " + end
-            cell.textLabel?.text = dateList[indexPath.row]
+         //   let start:String = dateFormatter.string(from: startDate)
+            cell.textLabel?.text = datelist[indexPath.row]
             return cell
         }
         else
@@ -164,39 +163,6 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         VoteTable.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        if(addItem && (indexPath.section == 1 || indexPath.section == 2))
-        {
-            return true
-        }
-        else
-        {
-            return false
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-    {
-        if (addItem)
-        {
-            if(editingStyle == UITableViewCellEditingStyle.delete)
-            {
-                if(indexPath.section == 1)
-                {
-              //      voteData.date[indexPath.row] = nil
-                }
-                else if (indexPath.section == 2)
-                {
-               //     voteData.place[indexPath.row] = nil
-                }
-                
-                VoteTable.reloadData()
-            }
-        }
-    }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -206,7 +172,20 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             if (cell.accessoryType == UITableViewCellAccessoryType.none)
             {
                 print("체크")
-                /* multiSelect에 대한 부분 구현해야함. 섹션 내에서 선택된 셀 이외의 다른 셀을 none으로 바꿔야함*/
+                /* multiSelect에 대한 부분. 섹션 내에서 선택된 셀 이외의 다른 셀을 none으로 바꿔야함*/
+                if(multiSelect == false)
+                {
+                    for row in 0..<VoteTable.numberOfRows(inSection: indexPath.section)
+                    {
+                        let index = IndexPath(row: row, section: indexPath.section)
+                        let cell = tableView.cellForRow(at: index)
+                        if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
+                        {
+                            print("체크해제")
+                            cell?.accessoryType = UITableViewCellAccessoryType.none
+                        }
+                    }
+                }
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
                 
             }
@@ -218,6 +197,11 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         }
         
+    }
+    
+    func saveData()
+    {
+    
     }
     
     

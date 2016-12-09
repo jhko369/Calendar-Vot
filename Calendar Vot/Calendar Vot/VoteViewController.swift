@@ -10,23 +10,18 @@ import UIKit
 
 
 protocol VoteViewControllerDelegate: class {
-    func VoteViewController(_ controller: VoteViewController)
+    func voteViewController(_ controller: VoteViewController)
 }
-
 
 class VoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    
-    
+
+    weak var delegate: VoteViewControllerDelegate?
+    static let storyboardIdentifier = "VoteView"
+    @IBOutlet weak var VoteTable: UITableView!
     @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
         saveData()
     }
-  
-    @IBOutlet weak var VoteTable: UITableView!
-    weak var delegate: VoteViewControllerDelegate?
-
-    static let storyboardIdentifier = "VoteView"
-    
     var voteData:Vote?
     var multiSelect:Bool = false //다중선택 허용?
     var addItem:Bool = false //항목추가 허용?
@@ -213,6 +208,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     func saveData()
     {
     
+        delegate?.voteViewController(self)
     }
     
     

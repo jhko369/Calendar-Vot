@@ -9,7 +9,7 @@
         <!--AddView-->
         <scene sceneID="fky-O1-B4U">
             <objects>
-                <viewController title="AddView" id="YQU-AQ-9v9" customClass="AddViewController" customModule="CalendarVotMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddView" title="AddView" id="YQU-AQ-9v9" customClass="AddViewController" customModule="CalendarVotMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ujx-30-iek"/>
                         <viewControllerLayoutGuide type="bottom" id="nGj-J4-xdt"/>
@@ -44,7 +44,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="투표 제목 입력" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="n6T-S5-8TO">
-                                                    <frame key="frameInset" minX="2.13%" minY="50.00%" width="94.67%" height="23"/>
+                                                    <frame key="frameInset" minX="1.87%" minY="50.00%" width="94.93%" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -136,7 +136,7 @@
         <!--VoteView-->
         <scene sceneID="6SU-Ht-8CJ">
             <objects>
-                <viewController title="VoteView" id="0DR-ZM-Bl7" customClass="VoteViewController" customModule="CalendarVotMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VoteView" title="VoteView" id="0DR-ZM-Bl7" customClass="VoteViewController" customModule="CalendarVotMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vrO-hR-PO7"/>
                         <viewControllerLayoutGuide type="bottom" id="6dC-DR-fJs"/>
@@ -148,7 +148,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="pet-n9-rmK">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="Vsd-Y3-ggf">
+                                <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Vsd-Y3-ggf">
                                     <rect key="frame" x="0.0" y="-147" width="0.0" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <items>
@@ -312,7 +312,7 @@
         <!--Messages View Controller-->
         <scene sceneID="qwt-HE-wya">
             <objects>
-                <viewController title="Messages View Controller" id="Mj5-dW-T7n" customClass="MessagesViewController" customModule="CalendarVotMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MeessagesView" title="Messages View Controller" id="Mj5-dW-T7n" customClass="MessagesViewController" customModule="CalendarVotMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k7H-fg-HVe"/>
                         <viewControllerLayoutGuide type="bottom" id="2m7-uc-m32"/>

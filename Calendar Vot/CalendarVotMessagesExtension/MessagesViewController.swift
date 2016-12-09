@@ -44,8 +44,23 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         else {
             print("expend")
-            controller = instantiateAddViewController()
-
+            let voteData = Vote(message: conversation.selectedMessage) ?? Vote()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+            let now:Date = Date.init()
+            if (voteData.isCreated)
+            {
+                if(now < dateFormatter.date(from: (voteData.finishTime?.time)!)!)
+                {controller = instantiateVoteViewController(with: voteData)}
+                else
+                { controller = instantiateVoteViewController(with: voteData)
+                //투표 종료 후 뷰로 바꿔야함.
+                }
+            }
+            else
+            {
+                controller = instantiateAddViewController()
+            }
         }
         
         // Remove any existing child controllers.
@@ -80,23 +95,38 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     private func instantiateAddViewController() -> UIViewController {
-        //AddView 생성
+        print("AddView 생성")
         guard let controller = storyboard?.instantiateViewController(withIdentifier: AddViewController.storyboardIdentifier) as? AddViewController else { fatalError("Add view 생성 실패") }
         
-        
+        controller.delegate = self
         return controller
     }
     
     private func instantiateVoteViewController(with vote:Vote) -> UIViewController {
-        //VoteView 생성
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: VoteViewController.storyboardIdentifier) as? VoteViewController else { fatalError("Vote view 생성 실패") }
-        
+        print("VoteView 생성")
+        guard let controller = storyboard?.instantiateViewController(withIdentifier:VoteViewController.storyboardIdentifier) as? VoteViewController else {fatalError("VoteView 생성 실패")}
+
         controller.voteData = vote
         controller.delegate = self
         
         return controller
     }
     
+    func composeMessage(with voteData:Vote, caption: String, session: MSSession? = nil) -> MSMessage {
+        var components = URLComponents()
+        components.queryItems = voteData.queryItems
+        
+        let layout = MSMessageTemplateLayout()
+      //  layout.image = voteData.renderSticker(opaque: true)
+        layout.caption = caption
+        
+        let message = MSMessage(session: session ?? MSSession())
+        message.url = components.url!
+        message.layout = layout
+        
+        return message
+    }
+
     
     override func didResignActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the active to inactive state.
@@ -143,23 +173,41 @@ extension MessagesViewController: StartViewControllerDelegate{
         requestPresentationStyle(.expanded)
     }
 }
-
-extension MessagesViewController: VoteViewControllerDelegate {
-    func VoteViewController(_ controller: VoteViewController) {
+extension MessagesViewController: AddViewControllerDelegate {
+    func addViewController(_ controller: AddViewController) {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         guard let voteData = controller.voteData else { fatalError("Expected the controller to be displaying a shoppingList") }
         
         // Create a new message with the same session as any currently selected message.
         
-        //let message = composeMessage(with: voteData, caption: "투표명 : ", session: conversation.selectedMessage?.session)
+        let message = composeMessage(with: voteData, caption: "투표명 : ", session: conversation.selectedMessage?.session)
         
         // Add the message to the conversation.
-//        conversation.insert(message) { error in
-//            if let error = error {
-//                print(error)
-//            }
-//        }
-//        
+                conversation.insert(message) { error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+                
+        dismiss()
+    }
+}
+extension MessagesViewController: VoteViewControllerDelegate {
+    func voteViewController(_ controller: VoteViewController) {
+        guard let conversation = activeConversation else { fatalError("Expected a conversation") }
+        guard let voteData = controller.voteData else { fatalError("Expected the controller to be displaying a shoppingList") }
+        
+        // Create a new message with the same session as any currently selected message.
+        
+        let message = composeMessage(with: voteData, caption: "투표명 : ", session: conversation.selectedMessage?.session)
+        
+        // Add the message to the conversation.
+        conversation.insert(message) { error in
+            if let error = error {
+                print(error)
+            }
+        }
+        
         dismiss()
     }
 }

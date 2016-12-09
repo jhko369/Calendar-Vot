@@ -1,25 +1,27 @@
 import UIKit
 
+
+protocol AddViewControllerDelegate: class {
+    func addViewController(_ controller: AddViewController)
+}
+
 class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     
+    weak var delegate: AddViewControllerDelegate?
     @IBOutlet weak var AddVoteTable: UITableView!
-    
     static let storyboardIdentifier = "AddView"
-    
     @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
         saveData()
         
     }
     
     
-    var voteData : Vote = Vote() // 데이터 객체
-    var dateCount : Int = 2
-    var locationCount : Int = 2
+    var voteData : Vote! // 데이터 객체
+    var dateCount : Int = 3
+    var locationCount : Int = 3
     
     let dateFormatter = DateFormatter()
-    let currentDate:Date = Date.init()
-    let finishDate:Date = Date.init(timeIntervalSinceNow: 60*60*24)
     
     let options = ["복수 선택 허용","선택지 추가 허용", "마감기한 설정"]
     
@@ -191,9 +193,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func saveData()
     {
-        //Vote 인스턴스에 투표 제목 저장
-        //Vote 인스턴스에 옵션 상태 저장
-        
+
+
         for section in 0..<AddVoteTable.numberOfSections {
             
             for row in 0..<AddVoteTable.numberOfRows(inSection: section)
@@ -204,7 +205,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 {
                     let cell = AddVoteTable.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
                     
-                    voteData.name = (cell.textLabel?.text)!
+                    voteData.voteName = (cell.textLabel?.text)!
                 }
                     
                 else if(section == 1)
@@ -213,7 +214,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     
                     if(cell.startField.text != nil)
                     {
-                        voteData.dateData[cell.startDate!] = 0
+                        voteData.dateData?[cell.startDate!] = 0
                     }
                 }
                     
@@ -223,7 +224,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     
                     if(cell.LocationField.text != nil)
                     {
-                        voteData.locationData[cell.LocationField.text!] = 0
+                        voteData.locationData?[cell.LocationField.text!] = 0
                     }
                 }
                     
@@ -242,9 +243,13 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     else if(row == 2 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
                         voteData.finishSet.option = "true";
+                    
                     }
                 }
             }
         }
+        voteData.DateDataSetting()
+        voteData.LocationDataSetting()
+        delegate?.addViewController(self)
     }
 }

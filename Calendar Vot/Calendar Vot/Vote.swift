@@ -85,12 +85,30 @@ class Vote{
     
     func DateDataSetting()
     {
-        //
+        for key in dateData.keys
+        {
+            var dateString : String
+            var dateCountString : String
+            
+            dateString = dateFormatter.string(from: key)
+            dateCountString = String(describing: dateData[key])
+            
+            date.append(MeetingDate(date : dateString + "&" + dateCountString))
+        }
     }
     
     func LocationDataSetting()
     {
-        
+        for key in locationData.keys
+        {
+            var locationString : String
+            var locationCountString : String
+            
+            locationString = key
+            locationCountString = String(describing: locationData[key])
+            
+            location.append(MeetingLocation(location: locationString + "&" + locationCountString))
+        }
     }
     
     func addDate(dateItem:MeetingDate)

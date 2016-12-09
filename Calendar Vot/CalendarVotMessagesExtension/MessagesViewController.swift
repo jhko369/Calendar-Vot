@@ -30,8 +30,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         guard let conversation = activeConversation else { fatalError("Expected an active converstation") }
-        
-        // Present the view controller appropriate for the conversation and presentation style.
         presentViewController(for: conversation, with: presentationStyle)
 
     }
@@ -41,19 +39,13 @@ class MessagesViewController: MSMessagesAppViewController {
         let controller: UIViewController
         if presentationStyle == .compact {
             // 투표 만들기, 투표 히스토리 보여주는 뷰
+            print("compact")
             controller = instantiateStartViewController()
         }
         else {
-            
-            //    let voteData = Vote(message: conversation.selectedMessage) ?? Vote()
-            let voteData:Vote = Vote()
-            if voteData.isFinished(now: Date.init()) == false
-            {
-                controller = instantiateVoteViewController(with: voteData)
-            }
-            else {
-                // controller = (투표 종료 후 나오는 뷰를 만들지 VoteView에서 설정할지 고민중)
-            }
+            print("expend")
+            controller = instantiateAddViewController()
+
         }
         
         // Remove any existing child controllers.
@@ -62,12 +54,27 @@ class MessagesViewController: MSMessagesAppViewController {
             child.view.removeFromSuperview()
             child.removeFromParentViewController()
         }
+        
+        // Embed the new controller.
+        addChildViewController(controller)
+        
+        controller.view.frame = view.bounds
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(controller.view)
+        
+        controller.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        controller.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        controller.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        controller.didMove(toParentViewController: self)
     }
     
     
     private func instantiateStartViewController() -> UIViewController {
-        //StartView 생성
+        print("StartView 생성")
         guard let controller = storyboard?.instantiateViewController(withIdentifier: StartViewController.storyboardIdentifier) as? StartViewController else { fatalError("Start view 생성 실패") }
+        controller.delegate = self
         
         return controller
     }
@@ -75,6 +82,7 @@ class MessagesViewController: MSMessagesAppViewController {
     private func instantiateAddViewController() -> UIViewController {
         //AddView 생성
         guard let controller = storyboard?.instantiateViewController(withIdentifier: AddViewController.storyboardIdentifier) as? AddViewController else { fatalError("Add view 생성 실패") }
+        
         
         return controller
     }
@@ -84,6 +92,7 @@ class MessagesViewController: MSMessagesAppViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier: VoteViewController.storyboardIdentifier) as? VoteViewController else { fatalError("Vote view 생성 실패") }
         
         controller.voteData = vote
+        controller.delegate = self
         
         return controller
     }
@@ -134,3 +143,24 @@ extension MessagesViewController: StartViewControllerDelegate{
         requestPresentationStyle(.expanded)
     }
 }
+
+extension MessagesViewController: VoteViewControllerDelegate {
+    func VoteViewController(_ controller: VoteViewController) {
+        guard let conversation = activeConversation else { fatalError("Expected a conversation") }
+        guard let voteData = controller.voteData else { fatalError("Expected the controller to be displaying a shoppingList") }
+        
+        // Create a new message with the same session as any currently selected message.
+        
+        //let message = composeMessage(with: voteData, caption: "투표명 : ", session: conversation.selectedMessage?.session)
+        
+        // Add the message to the conversation.
+//        conversation.insert(message) { error in
+//            if let error = error {
+//                print(error)
+//            }
+//        }
+//        
+        dismiss()
+    }
+}
+

@@ -8,11 +8,22 @@
 
 import UIKit
 
+
+protocol VoteViewControllerDelegate: class {
+    func VoteViewController(_ controller: VoteViewController)
+}
+
+
 class VoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     
     
+    @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
+        saveData()
+    }
+  
     @IBOutlet weak var VoteTable: UITableView!
+    weak var delegate: VoteViewControllerDelegate?
 
     static let storyboardIdentifier = "VoteView"
     

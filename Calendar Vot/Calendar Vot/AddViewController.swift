@@ -129,7 +129,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         var headerView : UIView?
         headerView = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:30))
-        headerView?.backgroundColor = UIColor.orange
         
         let title = UILabel(frame: CGRect(x:10, y:10, width:100, height:30))
         title.font = UIFont.systemFont(ofSize: 15)
@@ -224,17 +223,19 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if(section == 1)
                 {
                     let cell:DateCell = tableView.cellForRow(at: indexPath) as! DateCell
-                    if(cell.startField.text != nil)
+                    if(cell.startField.text != "")
                     {
+
                         voteData.dateData[cell.startDate!] = 0
                     }
+                    else {continue}
                 }
                     
                 else if(section == 2)
                 {
                     let cell:LocationCell = tableView.cellForRow(at: indexPath) as! LocationCell
                     
-                    if(cell.LocationField.text != nil)
+                    if(cell.LocationField.text != "")
                     {
                         voteData.locationData[cell.LocationField.text!] = 0
                     }
@@ -263,6 +264,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         voteData.DateDataSetting()
         voteData.LocationDataSetting()
         delegate?.addViewController(self)
+        
+        voteData.isCreated = true
         
         print(voteData.voteName)
         print(voteData.dates)

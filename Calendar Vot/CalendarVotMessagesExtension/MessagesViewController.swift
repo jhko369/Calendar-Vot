@@ -181,7 +181,7 @@ extension MessagesViewController: AddViewControllerDelegate {
         
         // Create a new message with the same session as any currently selected message.
         
-        let message = composeMessage(with: voteData, caption: "투표명 : ", session: conversation.selectedMessage?.session)
+        let message = composeMessage(with: voteData, caption: "투표(\(voteData.voteName))가 등록되었습니다. ", session: conversation.selectedMessage?.session)
         
         // Add the message to the conversation.
                 conversation.insert(message) { error in
@@ -200,7 +200,7 @@ extension MessagesViewController: VoteViewControllerDelegate {
         
         // Create a new message with the same session as any currently selected message.
         
-        let message = composeMessage(with: voteData, caption: "투표명 : ", session: conversation.selectedMessage?.session)
+        let message = composeMessage(with: voteData, caption: "투표(\(voteData.voteName))에 참여했습니다. ", session: conversation.selectedMessage?.session)
         
         // Add the message to the conversation.
         conversation.insert(message) { error in

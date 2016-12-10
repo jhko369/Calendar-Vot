@@ -38,7 +38,6 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         //guard let voteData = voteData else { fatalError("만들어진 투표 없음") }
         
         super.viewDidLoad()
-        
         VoteTable.dataSource = self
         VoteTable.delegate = self
         dateFormatter.locale = Locale(identifier: "ko_kr")

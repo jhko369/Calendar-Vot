@@ -9,7 +9,6 @@
 import Foundation
 import Messages
 
-// 몇 표 받았는지는 어떻게 하지..
 struct MeetingDate
 {
     static let key = "Date"
@@ -70,11 +69,7 @@ class Vote{
     var finishSet:FinishOption
     var createTime:CreateTime
     var finishTime:FinishTime
-    lazy var isCreated:Bool = {
-        //투표이름이 저장되면, 이 투표가 생성되었음을 의미!
-        //lazy var: 실제로 참조되는 시점에 실행됨.
-        return self.voteName != ""
-    }()
+    var isCreated:Bool = false
     
     let dateFormatter = DateFormatter()
     
@@ -230,3 +225,104 @@ extension Vote
     }
 
 }
+
+
+extension Vote {
+    
+    struct StickerProperties {
+        static let size = CGSize(width: 300.0, height: 300.0)
+        static let opaquePadding = CGSize(width: 60.0, height: 10.0)
+    }
+    
+    func renderSticker(opaque: Bool) -> UIImage? {
+        guard let listImage = renderList() else { return nil }
+        
+        // Determine the size to draw as a sticker.
+        let outputSize: CGSize
+        let listSize: CGSize
+        
+        if opaque {
+            let scale = min((StickerProperties.size.width - StickerProperties.opaquePadding.width) / listImage.size.height,
+                            (StickerProperties.size.height - StickerProperties.opaquePadding.height) / listImage.size.width)
+            listSize = CGSize(width: listImage.size.width * scale, height: listImage.size.height * scale)
+            outputSize = StickerProperties.size
+        }
+        else {
+            let scale = StickerProperties.size.width / listImage.size.height
+            listSize = CGSize(width: listImage.size.width * scale, height: listImage.size.height * scale)
+            outputSize = listSize
+        }
+        
+        let renderer = UIGraphicsImageRenderer(size: outputSize)
+        let image = renderer.image { context in
+            let backgroundColor: UIColor
+            if opaque {
+                backgroundColor = UIColor.white
+            }
+            else {
+                backgroundColor = UIColor.clear
+            }
+            
+            // Draw the background
+            backgroundColor.setFill()
+            context.fill(CGRect(origin: CGPoint.zero, size: StickerProperties.size))
+            
+            // Draw the scaled composited image.
+            var drawRect = CGRect.zero
+            drawRect.size = listSize
+            drawRect.origin.x = (outputSize.width / 2.0) - (listSize.width / 2.0)
+            drawRect.origin.y = (outputSize.height / 2.0) - (listSize.height / 2.0)
+            
+            listImage.draw(in: drawRect)
+        }
+        
+        return image
+    }
+    
+    private func renderList() -> UIImage? {
+        let fontSize: CGFloat = 30
+        let textColor: UIColor = UIColor.black
+        let boldTextFont: UIFont = UIFont.boldSystemFont(ofSize: fontSize - 2)
+        let textFont: UIFont = UIFont.systemFont(ofSize: fontSize - 4)
+        let titleFontAttributes = [
+            NSFontAttributeName: boldTextFont,
+            NSForegroundColorAttributeName: textColor,
+            ]
+        let textFontAttributes = [
+            NSFontAttributeName: textFont,
+            NSForegroundColorAttributeName: textColor,
+            ]
+        
+        let imageSize = CGSize(width: 280, height: 280)
+        let renderer = UIGraphicsImageRenderer(size: imageSize)
+        let image = renderer.image { context in
+            let backgroundColor = UIColor.lightGray
+            backgroundColor.setFill()
+            context.fill(CGRect(origin: CGPoint.zero, size: imageSize))
+            
+            var textHeight: CGFloat = fontSize
+            
+            let string = self.voteName as NSString
+            string.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize),withAttributes: titleFontAttributes)
+            textHeight += fontSize
+            for key in self.dateData.keys {
+                guard textHeight < 280 else {
+                    break
+                }
+                let element = dateFormatter.string(from: key) as NSString
+                element.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize), withAttributes: textFontAttributes)
+                textHeight += fontSize
+            }
+            for key in self.locationData.keys {
+                guard textHeight < 280 else {
+                    break
+                }
+                let element = key as NSString
+                element.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize), withAttributes: textFontAttributes)
+                textHeight += fontSize
+            }
+        }
+        return image
+    }
+}
+

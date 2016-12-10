@@ -153,8 +153,8 @@
 				4C083DDC1DD549240097FC9C /* AppDelegate.swift */,
 				4C083DE01DD549240097FC9C /* Main.storyboard */,
 				4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */,
-				4C083DE81DD549240097FC9C /* Info.plist */,
 				EB17572D1DDD8AE300A07263 /* DateCell.swift */,
+				4C083DE81DD549240097FC9C /* Info.plist */,
 				EB1757311DDD8B2B00A07263 /* LocationCell.swift */,
 				EB1757291DDD7FC800A07263 /* AddViewController.swift */,
 				EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */,
@@ -615,7 +615,7 @@
 		EB66BAED1DEFE77D004AC729 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Messages Icon";
 				INFOPLIST_FILE = CalendarVotMessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "YnJ.Calendar-Vot.CalendarVotMessagesExtension";
@@ -628,7 +628,7 @@
 		EB66BAEE1DEFE77D004AC729 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Messages Icon";
 				INFOPLIST_FILE = CalendarVotMessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "YnJ.Calendar-Vot.CalendarVotMessagesExtension";

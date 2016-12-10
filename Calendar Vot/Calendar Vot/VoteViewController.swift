@@ -41,7 +41,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         VoteTable.dataSource = self
         VoteTable.delegate = self
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
         dateCount = datelist.count
         locationCount = locationlist.count
         

@@ -28,6 +28,9 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         StartTable.dataSource = self
         StartTable.delegate = self
         
+        print("Date  \(Date.init())")
+        print("NS  \(NSDate.init())")
+        
     }
     
     override func didReceiveMemoryWarning() {

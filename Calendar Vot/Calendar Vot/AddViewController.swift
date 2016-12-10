@@ -11,28 +11,48 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     weak var delegate: AddViewControllerDelegate?
     @IBOutlet weak var AddVoteTable: UITableView!
     static let storyboardIdentifier = "AddView"
+    
+    @IBAction func voteNameChanged(_ sender: UITextField) {
+       
+        tempVoteName = sender.text!
+    }
+    
+    
     @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
-        saveData()
+        
+        if tempVoteName != ""
+        {
+            saveData(self.AddVoteTable)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "투표 이름", message: "항목을 입력해주세요", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default)
+            alert.addAction(ok)
+            self.present(alert, animated: false)
+        }
         
     }
     
     
-    var voteData : Vote! // 데이터 객체
+   // var voteData : Vote! = Vote.init()
+    
+    var voteData: Vote! = Vote.init()
     var dateCount : Int = 3
     var locationCount : Int = 3
-    
+    var tempVoteName:String = ""
     let dateFormatter = DateFormatter()
-    
     let options = ["복수 선택 허용","선택지 추가 허용", "마감기한 설정"]
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
         AddVoteTable.dataSource = self
         AddVoteTable.delegate = self
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
-        
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
+
     }
     
     override func didReceiveMemoryWarning()
@@ -109,7 +129,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         var headerView : UIView?
         headerView = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:30))
-        
+        headerView?.backgroundColor = UIColor.orange
         
         let title = UILabel(frame: CGRect(x:10, y:10, width:100, height:30))
         title.font = UIFont.systemFont(ofSize: 15)
@@ -161,12 +181,10 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             if (cell.accessoryType == UITableViewCellAccessoryType.none)
             {
-                print("dd")
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
             }
             else
             {
-                print("xx")
                 cell.accessoryType = UITableViewCellAccessoryType.none
             }
             
@@ -191,56 +209,50 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         AddVoteTable.reloadData()
     }
     
-    func saveData()
+    func saveData(_ tableView: UITableView)
     {
-
+        //1. 투표 이름
+        voteData.voteName = tempVoteName
 
         for section in 0..<AddVoteTable.numberOfSections {
-            
             for row in 0..<AddVoteTable.numberOfRows(inSection: section)
             {
                 let indexPath = IndexPath(row: row, section: section)
+                print("indexPath : \(indexPath)")
                 
-                if(section == 0)
+
+                if(section == 1)
                 {
-                    let cell = AddVoteTable.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath)
-                    
-                    voteData.voteName = (cell.textLabel?.text)!
-                }
-                    
-                else if(section == 1)
-                {
-                    let cell:DateCell = AddVoteTable.cellForRow(at: indexPath) as! DateCell
-                    
+                    let cell:DateCell = tableView.cellForRow(at: indexPath) as! DateCell
                     if(cell.startField.text != nil)
                     {
-                        voteData.dateData?[cell.startDate!] = 0
+                        voteData.dateData[cell.startDate!] = 0
                     }
                 }
                     
                 else if(section == 2)
                 {
-                    let cell:LocationCell = AddVoteTable.cellForRow(at: indexPath) as! LocationCell
+                    let cell:LocationCell = tableView.cellForRow(at: indexPath) as! LocationCell
                     
                     if(cell.LocationField.text != nil)
                     {
-                        voteData.locationData?[cell.LocationField.text!] = 0
+                        voteData.locationData[cell.LocationField.text!] = 0
                     }
                 }
                     
                 else if(section == 3)
                 {
                     //Vote 인스턴스에 옵션 정보 저장 .
-                    let cell = AddVoteTable.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
-                    if(row == 0 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    let cell = tableView.cellForRow(at: indexPath)
+                    if(row == 0 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
                         voteData.multiSelect.option = "true";
                     }
-                    else if(row == 1 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    else if(row == 1 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
                         voteData.addItem.option = "true";
                     }
-                    else if(row == 2 && cell.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    else if(row == 2 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
                         voteData.finishSet.option = "true";
                     
@@ -251,5 +263,19 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         voteData.DateDataSetting()
         voteData.LocationDataSetting()
         delegate?.addViewController(self)
+        
+        print(voteData.voteName)
+        print(voteData.dates)
+        print(voteData.dateData)
+        print(voteData.locations)
+        print(voteData.locationData)
+        print(voteData.multiSelect)
+        print(voteData.addItem)
+        print(voteData.finishSet)
+        print(voteData.createTime)
+        print(voteData.finishTime)
+        print(voteData.isCreated)
+
+        
     }
 }

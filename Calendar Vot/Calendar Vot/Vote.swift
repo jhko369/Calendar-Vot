@@ -28,7 +28,7 @@ struct MeetingLocation
 struct MultiOption
 {
     static let key = "MultiOption"
-    var option:String?
+    var option:String
 }
 
 struct AddItemOption
@@ -62,29 +62,36 @@ class Vote{
     
     var voteName : String = ""
     var dates:[MeetingDate] = []
-    var dateData : [Date : Int]!
+    var dateData : [Date : Int] = [:]
     var locations:[MeetingLocation] = []
-    var locationData : [String : Int]!
-    var multiSelect:MultiOption!
-    var addItem:AddItemOption!
-    var finishSet:FinishOption!
-    var createTime:CreateTime?
-    var finishTime:FinishTime?
-    var isCreated:Bool{
+    var locationData : [String : Int] = [:]
+    var multiSelect:MultiOption
+    var addItem:AddItemOption
+    var finishSet:FinishOption
+    var createTime:CreateTime
+    var finishTime:FinishTime
+    lazy var isCreated:Bool = {
         //투표이름이 저장되면, 이 투표가 생성되었음을 의미!
-        return voteName != ""
-    }
+        //lazy var: 실제로 참조되는 시점에 실행됨.
+        return self.voteName != ""
+    }()
     
     let dateFormatter = DateFormatter()
     
     init()
     {
-        self.voteName = ""
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        
+        self.multiSelect = MultiOption(option:"false")
+        self.addItem = AddItemOption(option:"false")
+        self.finishSet = FinishOption(option:"false")
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
+        
         let current:NSDate = NSDate.init()
-        createTime?.time = dateFormatter.string(from: current as Date)
+        self.createTime = CreateTime(time: dateFormatter.string(from: current as Date))
+        
         let finish:NSDate = NSDate.init(timeIntervalSinceNow: 60*60*24)
-        finishTime?.time = dateFormatter.string(from: finish as Date)
+        self.finishTime = FinishTime(time: dateFormatter.string(from: finish as Date))
     }
     
     func DateDataSetting()
@@ -128,8 +135,9 @@ class Vote{
 
     func isFinished(now:Date) -> Bool
     {
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
-        if(dateFormatter.date(from: (finishTime!.time))! < now)
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
+        if(dateFormatter.date(from: (finishTime.time))! < now)
         {return true}
         else
         {return false}
@@ -161,7 +169,8 @@ extension Vote
     {
         self.init()
         
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
         for queryItem in queryItems
         {
             guard let value = queryItem.value else {continue}
@@ -178,7 +187,7 @@ extension Vote
                 let tempDate:String = tempDateAndCount[0]
                 if let tempCount:Int = Int(tempDateAndCount[1])
                 {
-                    dateData?[dateFormatter.date(from: tempDate)!] = tempCount
+                    dateData[dateFormatter.date(from: tempDate)!] = tempCount
                 }
                 
             case MeetingLocation.key:
@@ -188,7 +197,7 @@ extension Vote
                 let tempLoca:String = tempLocaAndCount[0]
                 if let tempCount:Int = Int(tempLocaAndCount[1])
                 {
-                    locationData?[tempLoca] = tempCount
+                    locationData[tempLoca] = tempCount
                 }
             case MultiOption.key:
                 multiSelect.option = value
@@ -200,10 +209,10 @@ extension Vote
                 finishSet.option = value
                 
             case CreateTime.key:
-                createTime?.time = value
+                createTime.time = value
                 
             case FinishTime.key:
-                finishTime?.time = value
+                finishTime.time = value
                 
             default:
                 break

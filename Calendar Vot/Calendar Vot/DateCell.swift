@@ -14,8 +14,8 @@ class DateCell: UITableViewCell
     var datePickerView:UIView = UIView() //datePicker, doneBtn 포함하는 inputView
     var datePicker:UIDatePicker = UIDatePicker()
     var doneBtn = UIButton()
-    var startDate:Date? = nil
-
+    var startDate:Date?
+    
     @IBOutlet weak var startField: UITextField!
     @IBAction func startFieldEditing(_ sender: UITextField)
     {
@@ -31,6 +31,7 @@ class DateCell: UITableViewCell
         datePicker = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.frame.size.width , height: 200))
         datePicker.datePickerMode = UIDatePickerMode.dateAndTime
         datePicker.minuteInterval = 5
+        datePicker.locale = Locale(identifier: "ko_kr")
         datePickerView.addSubview(datePicker)
         
         doneBtn = UIButton(frame: CGRect(x: self.frame.size.width - 100,y: 0, width: 100, height: 50))
@@ -48,7 +49,8 @@ class DateCell: UITableViewCell
     func datePickerValueChanged(sender:UIDatePicker)
     {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
         startDate = sender.date
         startField.text = dateFormatter.string(from: sender.date)
         

@@ -123,6 +123,7 @@ class MessagesViewController: MSMessagesAppViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier:VoteViewController.storyboardIdentifier) as? VoteViewController else {fatalError("VoteView 생성 실패")}
 
         controller.voteData = vote
+        //controller.SettingData()
         controller.delegate = self
         
         return controller

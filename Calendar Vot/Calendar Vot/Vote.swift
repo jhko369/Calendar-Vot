@@ -80,7 +80,6 @@ class Vote{
     
     init()
     {
-        
         self.multiSelect = MultiOption(option:"false")
         self.addItem = AddItemOption(option:"false")
         self.finishSet = FinishOption(option:"false")
@@ -93,7 +92,6 @@ class Vote{
         let finish:NSDate = NSDate.init(timeIntervalSinceNow: 60*60*24)
         self.finishTime = FinishTime(time: dateFormatter.string(from: finish as Date))
         self.created = Created(isCreated: "false")
-        
     }
     
     func DateDataSetting()
@@ -169,7 +167,6 @@ extension Vote
         items.append(URLQueryItem(name: FinishOption.key, value: finishSet.option))
         items.append(URLQueryItem(name: Created.key, value: created.isCreated))
 
-
         return items
     }
     
@@ -179,6 +176,7 @@ extension Vote
         
         dateFormatter.locale = Locale(identifier: "ko_kr")
         dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
+        
         for queryItem in queryItems
         {
             guard let value = queryItem.value else {continue}

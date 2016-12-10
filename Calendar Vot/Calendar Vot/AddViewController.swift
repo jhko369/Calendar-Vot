@@ -247,25 +247,29 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     let cell = tableView.cellForRow(at: indexPath)
                     if(row == 0 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
-                        voteData.multiSelect.option = "true";
+                        voteData.multiSelect.option = "true"
                     }
                     else if(row == 1 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
-                        voteData.addItem.option = "true";
+                        voteData.addItem.option = "true"
                     }
                     else if(row == 2 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
-                        voteData.finishSet.option = "true";
+                        voteData.finishSet.option = "true"
                     
                     }
                 }
             }
         }
+        
+        voteData.created.isCreated = "true"
+        
+        
         voteData.DateDataSetting()
         voteData.LocationDataSetting()
         delegate?.addViewController(self)
         
-        voteData.isCreated = true
+ 
         
         print(voteData.voteName)
         print(voteData.dates)
@@ -277,7 +281,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         print(voteData.finishSet)
         print(voteData.createTime)
         print(voteData.finishTime)
-        print(voteData.isCreated)
+        print(voteData.created)
 
         
     }

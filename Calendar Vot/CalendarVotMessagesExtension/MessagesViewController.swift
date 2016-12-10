@@ -45,12 +45,25 @@ class MessagesViewController: MSMessagesAppViewController {
         else {
             print("expend")
             let voteData = Vote(message: conversation.selectedMessage) ?? Vote()
+            print(voteData.voteName)
+            print(voteData.dates)
+            print(voteData.dateData)
+            print(voteData.locations)
+            print(voteData.locationData)
+            print(voteData.multiSelect)
+            print(voteData.addItem)
+            print(voteData.finishSet)
+            print(voteData.createTime)
+            print(voteData.finishTime)
+            print(voteData.created)
+
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "ko_kr")
             dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
             let now:Date = Date.init()
-            if (voteData.isCreated)
+            if (voteData.created.isCreated == "true")
             {
+                print("created")
                 if(now < dateFormatter.date(from: (voteData.finishTime.time))!)
                 {controller = instantiateVoteViewController(with: voteData)}
                 else
@@ -60,6 +73,8 @@ class MessagesViewController: MSMessagesAppViewController {
             }
             else
             {
+                print("creating")
+
                 controller = instantiateAddViewController()
             }
         }

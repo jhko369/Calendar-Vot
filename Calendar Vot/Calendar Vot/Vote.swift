@@ -54,6 +54,11 @@ struct FinishTime
     var time:String
 }
 
+struct Created
+{
+    static let key = "Created"
+    var isCreated:String
+}
 
 class Vote{
     
@@ -69,7 +74,7 @@ class Vote{
     var finishSet:FinishOption
     var createTime:CreateTime
     var finishTime:FinishTime
-    var isCreated:Bool = false
+    var created:Created
     
     let dateFormatter = DateFormatter()
     
@@ -87,6 +92,8 @@ class Vote{
         
         let finish:NSDate = NSDate.init(timeIntervalSinceNow: 60*60*24)
         self.finishTime = FinishTime(time: dateFormatter.string(from: finish as Date))
+        self.created = Created(isCreated: "false")
+        
     }
     
     func DateDataSetting()
@@ -156,7 +163,13 @@ extension Vote
         {
             items.append(URLQueryItem(name: MeetingLocation.key, value: location.location))
         }
-        
+        //옵션 정보, created 추가
+        items.append(URLQueryItem(name: MultiOption.key, value: multiSelect.option))
+        items.append(URLQueryItem(name: AddItemOption.key, value: addItem.option))
+        items.append(URLQueryItem(name: FinishOption.key, value: finishSet.option))
+        items.append(URLQueryItem(name: Created.key, value: created.isCreated))
+
+
         return items
     }
     
@@ -208,6 +221,8 @@ extension Vote
                 
             case FinishTime.key:
                 finishTime.time = value
+            case Created.key:
+                created.isCreated = value
                 
             default:
                 break

@@ -226,7 +226,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     if(cell.startField.text != "")
                     {
 
-                        voteData.dateData[cell.startDate!] = 0
+                        voteData.dateData.append((cell.startDate!, 0))
                     }
                     else {continue}
                 }
@@ -237,8 +237,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     
                     if(cell.LocationField.text != "")
                     {
-                        voteData.locationData[cell.LocationField.text!] = 0
-                    }
+                        voteData.locationData.append((cell.LocationField!.text!, 0))                    }
                 }
                     
                 else if(section == 3)

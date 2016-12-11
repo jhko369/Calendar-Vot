@@ -66,9 +66,9 @@ class Vote{
     
     var voteName : String = ""
     var dates:[MeetingDate] = []
-    var dateData : [Date : Int] = [:]
+    var dateData : [(Date, Int)] = []
     var locations:[MeetingLocation] = []
-    var locationData : [String : Int] = [:]
+    var locationData : [(String, Int)] = []
     var multiSelect:MultiOption
     var addItem:AddItemOption
     var finishSet:FinishOption
@@ -96,13 +96,13 @@ class Vote{
     
     func DateDataSetting()
     {
-        for key in dateData.keys
+        for data in dateData
         {
             var dateString : String
             var dateCountString : String
             
-            dateString = dateFormatter.string(from: key)
-            dateCountString = String(describing: dateData[key])
+            dateString = dateFormatter.string(from: data.0)
+            dateCountString = String(describing: data.1)
             
             dates.append(MeetingDate(date : dateString + "&" + dateCountString))
         }
@@ -110,13 +110,13 @@ class Vote{
     
     func LocationDataSetting()
     {
-        for key in locationData.keys
+        for data in locationData
         {
             var locationString : String
             var locationCountString : String
             
-            locationString = key
-            locationCountString = String(describing: locationData[key])
+            locationString = data.0
+            locationCountString = String(describing: data.1)
             
             locations.append(MeetingLocation(location: locationString + "&" + locationCountString))
         }
@@ -193,7 +193,7 @@ extension Vote
                 let tempDate:String = tempDateAndCount[0]
                 if let tempCount:Int = Int(tempDateAndCount[1])
                 {
-                    dateData[dateFormatter.date(from: tempDate)!] = tempCount
+                    dateData.append(dateFormatter.date(from: tempDate)!, tempCount)
                 }
                 
             case MeetingLocation.key:
@@ -203,7 +203,7 @@ extension Vote
                 let tempLoca:String = tempLocaAndCount[0]
                 if let tempCount:Int = Int(tempLocaAndCount[1])
                 {
-                    locationData[tempLoca] = tempCount
+                    locationData.append(tempLoca, tempCount)
                 }
             case MultiOption.key:
                 multiSelect.option = value
@@ -318,19 +318,19 @@ extension Vote {
             let string = self.voteName as NSString
             string.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize),withAttributes: titleFontAttributes)
             textHeight += fontSize
-            for key in self.dateData.keys {
+            for data in self.dateData {
                 guard textHeight < 280 else {
                     break
                 }
-                let element = dateFormatter.string(from: key) as NSString
+                let element = dateFormatter.string(from: data.0) as NSString
                 element.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize), withAttributes: textFontAttributes)
                 textHeight += fontSize
             }
-            for key in self.locationData.keys {
+            for data in self.locationData {
                 guard textHeight < 280 else {
                     break
                 }
-                let element = key as NSString
+                let element = data.0 as NSString
                 element.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize), withAttributes: textFontAttributes)
                 textHeight += fontSize
             }

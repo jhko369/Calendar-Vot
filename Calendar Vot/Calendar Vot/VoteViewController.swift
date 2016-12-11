@@ -87,14 +87,14 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
          //   let start:String = dateFormatter.string(from: startDate)
-            cell.textLabel?.text = datelist[indexPath.row]
+            cell.textLabel?.text = dateFormatter.string(from: (voteData?.dateData[indexPath.row].0)!)
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
             // cell.textLabel?.text = voteData.place[indexPath.row]?.placeName
-            cell.textLabel?.text = locationlist[indexPath.row]
+            cell.textLabel?.text = voteData?.locationData[indexPath.row].0
             return cell
         }
     }
@@ -216,41 +216,5 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     func saveData()
     {
         delegate?.voteViewController(self)
-    }
-    
-    func SettingData()
-    {
-        
-        print(VoteTable.numberOfSections)
-        
-        for section in 0...VoteTable.numberOfSections
-        {
-            for row in 0...VoteTable.numberOfRows(inSection: section)
-            {
-                let indexPath = IndexPath(row : row, section : section)
-                let cell = VoteTable.cellForRow(at: indexPath)
-                
-                if(section == 0)
-                {
-                    cell?.textLabel?.text = voteData?.voteName
-                }
-                
-                if(section == 1)
-                {
-                    for date in (voteData?.dateData.keys)!
-                    {
-                        cell?.textLabel?.text = dateFormatter.string(from: date)
-                    }
-                }
-                
-                if(section == 2)
-                {
-                    for location in (voteData?.locationData.keys)!
-                    {
-                        cell?.textLabel?.text = location
-                    }
-                }
-            }
-        }
     }
 }

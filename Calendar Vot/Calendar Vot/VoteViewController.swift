@@ -27,9 +27,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     let votetitle:String = ""
     let startDate:Date = Date.init()
     let datelist:[String] = []
-    //ßvar dateCount:Int = 0
     let locationlist:[String] = []
-    //ßvar locationCount:Int = 0
     let dateFormatter = DateFormatter()
 
     override func viewDidLoad()
@@ -41,8 +39,6 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         VoteTable.delegate = self
         dateFormatter.locale = Locale(identifier: "ko_kr")
         dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
-        //dateCount = datelist.count
-        //locationCount = locationlist.count
         
     }
     
@@ -215,6 +211,33 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func saveData()
     {
-        delegate?.voteViewController(self)
+        for section in 0..<VoteTable.numberOfSections {
+            for row in 0..<VoteTable.numberOfRows(inSection: section)
+            {
+                let indexPath = IndexPath(row: row, section: section)
+                let cell = VoteTable.cellForRow(at: indexPath)
+                
+                if(section == 1)
+                {
+                    if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    {
+                        voteData?.dateData[row].1 += 1
+                    }
+                }
+                
+                if(section == 2)
+                {
+                    if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
+                    {
+                        voteData?.locationData[row].1 += 1
+                    }
+                }
+            }
+        }
+        
+        
+        for a in (voteData?.locationData)!
+        {print(a)}
+        //delegate?.voteViewController(self)
     }
 }

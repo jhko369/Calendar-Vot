@@ -235,9 +235,9 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
+        voteData?.DateDataSetting()
+        voteData?.LocationDataSetting()
         
-        for a in (voteData?.locationData)!
-        {print(a)}
-        //delegate?.voteViewController(self)
+        delegate?.voteViewController(self)
     }
 }

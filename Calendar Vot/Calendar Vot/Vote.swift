@@ -96,6 +96,8 @@ class Vote{
     
     func DateDataSetting()
     {
+        dates = []
+        
         for data in dateData
         {
             var dateString : String
@@ -110,6 +112,8 @@ class Vote{
     
     func LocationDataSetting()
     {
+        locations = []
+        
         for data in locationData
         {
             var locationString : String

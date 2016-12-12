@@ -60,8 +60,14 @@ struct Created
     var isCreated:String
 }
 
-class Vote{
-    
+struct deviceID
+{
+    static let key = "deviceID"
+    var uuID : String
+}
+
+class Vote
+{
     static let key = "name"
     
     var voteName : String = ""
@@ -75,6 +81,7 @@ class Vote{
     var createTime:CreateTime
     var finishTime:FinishTime
     var created:Created
+    var uuID:deviceID
     
     let dateFormatter = DateFormatter()
     
@@ -92,6 +99,7 @@ class Vote{
         let finish:NSDate = NSDate.init(timeIntervalSinceNow: 60*60*24)
         self.finishTime = FinishTime(time: dateFormatter.string(from: finish as Date))
         self.created = Created(isCreated: "false")
+        self.uuID.uuID = NSUUID.init().uuidString
     }
     
     func DateDataSetting()

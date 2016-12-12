@@ -82,6 +82,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else if indexPath.section == 1
         {
+            //원래 사이즈까지는 VoteDateCell, 이후는 textfield있는 cell로
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
             if(indexPath.row < (voteData?.dates.count)!)
             {

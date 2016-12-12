@@ -280,10 +280,14 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                         voteData.finishSet.option = "true"
                     
                     }
-                    else
+                    
+                    if(row == 3)
                     {
                         let cell:DateCell = tableView.cellForRow(at: indexPath) as! DateCell
-                        voteData.finishTime.time = dateFormatter.string(from: cell.startDate!)
+                        if(cell.startField.text != "")
+                        {
+                            voteData.finishTime.time = dateFormatter.string(from: cell.startDate!)
+                        }
                     }
                     
                 }

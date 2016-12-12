@@ -40,6 +40,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var voteData: Vote! = Vote.init()
     var dateCount : Int = 3
     var locationCount : Int = 3
+    var optionCount: Int = 3
     var tempVoteName:String = ""
     let dateFormatter = DateFormatter()
     let options = ["복수 선택 허용","선택지 추가 허용", "마감기한 설정"]
@@ -80,7 +81,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             return locationCount
         }
         else{
-            return 3
+            return optionCount
         }
     }
     
@@ -108,11 +109,22 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.index = indexPath.row
             return cell
         }
-        else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
-            let option = options[indexPath.row]
-            cell.textLabel?.text = option
-            return cell
+        else
+        {
+            
+            if( indexPath.row == 3)
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DateCell") as! DateCell
+                return cell
+                
+            }
+            else
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
+                let option = options[indexPath.row]
+                cell.textLabel?.text = option
+                return cell
+            }
         }
         
     }
@@ -187,9 +199,20 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 cell.accessoryType = UITableViewCellAccessoryType.none
             }
             
-            let tempindex = IndexPath(row: 2, section: 3) // 마감 기한 설정
-            if(indexPath == tempindex)
+            if(indexPath.row == 2)
             {
+                tableView.beginUpdates()
+                if(cell.accessoryType == UITableViewCellAccessoryType.checkmark)
+                {
+                    optionCount += 1
+                    tableView.insertRows(at: [IndexPath(row:3, section: 3)], with: .right)
+                }
+                else
+                {
+                    optionCount -= 1
+                    tableView.deleteRows(at: [IndexPath(row:3, section: 3)], with: .left)
+                }
+                tableView.endUpdates()
                 
             }
         }
@@ -257,6 +280,12 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                         voteData.finishSet.option = "true"
                     
                     }
+                    else
+                    {
+                        let cell:DateCell = tableView.cellForRow(at: indexPath) as! DateCell
+                        voteData.finishTime.time = dateFormatter.string(from: cell.startDate!)
+                    }
+                    
                 }
             }
         }

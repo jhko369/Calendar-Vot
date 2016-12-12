@@ -60,10 +60,10 @@ struct Created
     var isCreated:String
 }
 
-struct deviceID
+struct VotedCount
 {
-    static let key = "deviceID"
-    var uuID : String
+    static let key = "votedCount"
+    var count : String
 }
 
 class Vote
@@ -81,8 +81,8 @@ class Vote
     var createTime:CreateTime
     var finishTime:FinishTime
     var created:Created
-    var uuID:deviceID
-    
+    var votedCount : VotedCount
+
     let dateFormatter = DateFormatter()
     
     init()
@@ -99,7 +99,7 @@ class Vote
         let finish:NSDate = NSDate.init(timeIntervalSinceNow: 60*60*24)
         self.finishTime = FinishTime(time: dateFormatter.string(from: finish as Date))
         self.created = Created(isCreated: "false")
-        self.uuID.uuID = NSUUID.init().uuidString
+        self.votedCount = VotedCount(count : "0")
     }
     
     func DateDataSetting()
@@ -147,12 +147,7 @@ class Vote
 
     func isFinished(now:Date) -> Bool
     {
-        dateFormatter.locale = Locale(identifier: "ko_kr")
-        dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
-        if(dateFormatter.date(from: (finishTime.time))! < now)
-        {return true}
-        else
-        {return false}
+        
     }
 }
 
@@ -178,6 +173,8 @@ extension Vote
         items.append(URLQueryItem(name: AddItemOption.key, value: addItem.option))
         items.append(URLQueryItem(name: FinishOption.key, value: finishSet.option))
         items.append(URLQueryItem(name: Created.key, value: created.isCreated))
+        
+        items.append(URLQueryItem(name: VotedCount.key, value: votedCount.count))
 
         return items
     }
@@ -231,8 +228,12 @@ extension Vote
                 
             case FinishTime.key:
                 finishTime.time = value
+                
             case Created.key:
                 created.isCreated = value
+                
+            case VotedCount.key:
+                votedCount.count = value
                 
             default:
                 break
@@ -243,7 +244,8 @@ extension Vote
 
 extension Vote
 {
-    convenience init?(message: MSMessage?) {
+    convenience init?(message: MSMessage?)
+    {
         guard let messageURL = message?.url else { return nil }
         guard let urlComponents = NSURLComponents(url: messageURL, resolvingAgainstBaseURL: false), let queryItems = urlComponents.queryItems else { return nil }
         self.init(queryItems: queryItems)
@@ -252,28 +254,34 @@ extension Vote
 }
 
 
-extension Vote {
-    
-    struct StickerProperties {
+extension Vote
+{
+    struct StickerProperties
+    {
         static let size = CGSize(width: 300.0, height: 300.0)
         static let opaquePadding = CGSize(width: 60.0, height: 10.0)
     }
     
-    func renderSticker(opaque: Bool) -> UIImage? {
+    func renderSticker(opaque: Bool) -> UIImage?
+    {
         guard let listImage = renderList() else { return nil }
         
         // Determine the size to draw as a sticker.
         let outputSize: CGSize
         let listSize: CGSize
         
-        if opaque {
+        if opaque
+        {
             let scale = min((StickerProperties.size.width - StickerProperties.opaquePadding.width) / listImage.size.height,
                             (StickerProperties.size.height - StickerProperties.opaquePadding.height) / listImage.size.width)
             listSize = CGSize(width: listImage.size.width * scale, height: listImage.size.height * scale)
             outputSize = StickerProperties.size
         }
-        else {
+            
+        else
+        {
             let scale = StickerProperties.size.width / listImage.size.height
+            
             listSize = CGSize(width: listImage.size.width * scale, height: listImage.size.height * scale)
             outputSize = listSize
         }

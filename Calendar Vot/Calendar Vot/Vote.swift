@@ -324,7 +324,7 @@ extension Vote
         let imageSize = CGSize(width: 280, height: 280)
         let renderer = UIGraphicsImageRenderer(size: imageSize)
         let image = renderer.image { context in
-            let backgroundColor = UIColor.lightGray
+            let backgroundColor = UIColor.init(red: 220/255, green: 1.0, blue: 1.0, alpha: 1.0)
             backgroundColor.setFill()
             context.fill(CGRect(origin: CGPoint.zero, size: imageSize))
             

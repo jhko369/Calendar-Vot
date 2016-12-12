@@ -39,23 +39,12 @@ class MessagesViewController: MSMessagesAppViewController {
         let controller: UIViewController
         if presentationStyle == .compact {
             // 투표 만들기, 투표 히스토리 보여주는 뷰
-            print("compact")
+           
             controller = instantiateStartViewController()
         }
         else {
-            print("expend")
+       
             let voteData = Vote(message: conversation.selectedMessage) ?? Vote()
-            print(voteData.voteName)
-            print(voteData.dates)
-            print(voteData.dateData)
-            print(voteData.locations)
-            print(voteData.locationData)
-            print(voteData.multiSelect)
-            print(voteData.addItem)
-            print(voteData.finishSet)
-            print(voteData.createTime)
-            print(voteData.finishTime)
-            print(voteData.created)
 
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "ko_kr")

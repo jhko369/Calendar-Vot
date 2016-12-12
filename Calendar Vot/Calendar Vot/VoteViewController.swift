@@ -60,13 +60,17 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             return 1
         case 1:
-            print("카운트: \((voteData?.dateData.count)!)")
             return (voteData?.dateData.count)!
         case 2:
             return (voteData?.locationData.count)!
         default:
             return 0
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 65.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -83,38 +87,40 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else if indexPath.section == 1
         {
-            if(indexPath.row < (voteData?.dateData.count)!)
+            if(indexPath.row < dateCellCount)
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
                 cell.textLabel?.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
-                cell.detailTextLabel?.text = "\(voteData!.dateData[indexPath.row].1)"
+                cell.detailTextLabel?.text = "득표수: \(voteData!.dateData[indexPath.row].1)"
                 return cell
             }
             else
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NewDateCell") as! NewDateCell
                 cell.startField.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
-                cell.countText.text = "\(voteData!.dateData[indexPath.row].1)"
+                cell.countText.text = "득표수: \(voteData!.dateData[indexPath.row].1)"
                 return cell
 
             }
         }
         else
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
-            if(indexPath.row < (voteData?.locationData.count)!)
+            
+            if(indexPath.row < locaCellCount)
             {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
                 cell.textLabel?.text = voteData!.locationData[indexPath.row].0
-                cell.detailTextLabel?.text = "\(voteData!.locationData[indexPath.row].1)"
+                cell.detailTextLabel?.text = "득표수: \(voteData!.locationData[indexPath.row].1)"
+                return cell
             }
             else
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NewLocationCell") as! NewLocationCell
-                cell.locationField.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
-                
+                cell.locationField.text = voteData!.locationData[indexPath.row].0
+                cell.countText.text = "득표수: \(voteData!.locationData[indexPath.row].1)"
                 return cell
             }
-            return cell
+          
         }
     }
     
@@ -184,14 +190,17 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func addRow_date(_: UIButton)
     {
-        VoteTable.beginUpdates()
+        //VoteTable.beginUpdates()
         voteData?.dateData.append((Date.init(), 0))
-        VoteTable.endUpdates()
+        
+        print(voteData?.dateData)
+        VoteTable.reloadData()
     }
     
     func addRow_place(_:UIButton)
     {
         voteData?.locationData.append(("", 0))
+           print(voteData?.locationData)
         VoteTable.reloadData()
     }
     
@@ -203,8 +212,6 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         {
             if (cell.accessoryType == UITableViewCellAccessoryType.none)
             {
-                print("체크")
-                /* multiSelect에 대한 부분. 섹션 내에서 선택된 셀 이외의 다른 셀을 none으로 바꿔야함*/
                 if(voteData?.multiSelect.option == "false")
                 {
                     for row in 0..<VoteTable.numberOfRows(inSection: indexPath.section)
@@ -213,21 +220,20 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                         let cell = tableView.cellForRow(at: index)
                         if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                         {
-                            print("체크해제")
                             cell?.accessoryType = UITableViewCellAccessoryType.none
                         }
                     }
                 }
-                
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
             }
                 
             else
             {
-                print("체크 해제")
                 cell.accessoryType = UITableViewCellAccessoryType.none
             }
         }
+        
+        tableView.reloadData()
     }
     
     func saveData()

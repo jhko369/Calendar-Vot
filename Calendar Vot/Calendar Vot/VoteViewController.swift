@@ -22,13 +22,12 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         saveData()
     }
     var voteData:Vote?
-    var multiSelect:Bool = false //다중선택 허용?
-    var addItem:Bool = false //항목추가 허용?
     let votetitle:String = ""
-    let startDate:Date = Date.init()
-    let datelist:[String] = []
-    let locationlist:[String] = []
+    var dateCellCount:Int = 0
+    var locaCellCount:Int = 0
     let dateFormatter = DateFormatter()
+    
+    
 
     override func viewDidLoad()
     {
@@ -39,6 +38,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         VoteTable.delegate = self
         dateFormatter.locale = Locale(identifier: "ko_kr")
         dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
+        dateCellCount = (voteData?.dates.count)!
+        locaCellCount = (voteData?.locations.count)!
         
     }
     
@@ -59,9 +60,9 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             return 1
         case 1:
-            return (voteData?.dateData.count)!
+            return dateCellCount
         case 2:
-            return (voteData?.locationData.count)!
+            return locaCellCount
         default:
             return 0
         }
@@ -72,7 +73,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.section == 0
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteTitleCell", for: indexPath)
-            if(multiSelect)
+            if(voteData?.multiSelect.option == "true")
             {cell.detailTextLabel?.text = "다중선택 가능"}
             else
             {cell.detailTextLabel?.text = ""}
@@ -82,15 +83,32 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         else if indexPath.section == 1
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
-         //   let start:String = dateFormatter.string(from: startDate)
-            cell.textLabel?.text = dateFormatter.string(from: (voteData?.dateData[indexPath.row].0)!)
+            if(indexPath.row < (voteData?.dates.count)!)
+            {
+                cell.textLabel?.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
+                cell.detailTextLabel?.text = "\(voteData!.dateData[indexPath.row].1)"
+            }
+            else
+            {
+                cell.textLabel?.text = ""
+                cell.detailTextLabel?.text = ""
+            }
+        
             return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
-            // cell.textLabel?.text = voteData.place[indexPath.row]?.placeName
-            cell.textLabel?.text = voteData?.locationData[indexPath.row].0
+            if(indexPath.row < (voteData?.locations.count)!)
+            {
+                cell.textLabel?.text = voteData!.locationData[indexPath.row].0
+                cell.detailTextLabel?.text = "\(voteData!.locationData[indexPath.row].1)"
+            }
+            else
+            {
+                cell.textLabel?.text = ""
+                cell.detailTextLabel?.text = ""
+            }
             return cell
         }
     }
@@ -123,11 +141,11 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         addLocaBtn.backgroundColor = UIColor.clear
         addLocaBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)
         
-        if(addItem)
+        if(voteData?.addItem.option == "true")
         {
             //항목 추가가 가능할 때만 타켓 생성
-            /*addDateBtn.addTarget(self, action: #selector(self.addRow_date), for: UIControlEvents.touchUpInside)
-            addLocaBtn.addTarget(self, action: #selector(self.addRow_place), for: UIControlEvents.touchUpInside)*/
+            addDateBtn.addTarget(self, action: #selector(self.addRow_date), for: UIControlEvents.touchUpInside)
+            addLocaBtn.addTarget(self, action: #selector(self.addRow_place), for: UIControlEvents.touchUpInside)
         }
             
         else
@@ -158,21 +176,21 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
      
         return headerView
     }
-    /*
+    
     func addRow_date(_: UIButton)
     {
        // var date : MeetingDate = MeetingDate()
        // voteData.date[voteData.date.count] = date
         
-        dateCount += 1
+        dateCellCount += 1
         VoteTable.reloadData()
     }
     
     func addRow_place(_:UIButton)
     {
-        locationCount += 1
+        locaCellCount += 1
         VoteTable.reloadData()
-    }*/
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
@@ -184,7 +202,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 print("체크")
                 /* multiSelect에 대한 부분. 섹션 내에서 선택된 셀 이외의 다른 셀을 none으로 바꿔야함*/
-                if(multiSelect == false)
+                if(voteData?.multiSelect.option == "false")
                 {
                     for row in 0..<VoteTable.numberOfRows(inSection: indexPath.section)
                     {

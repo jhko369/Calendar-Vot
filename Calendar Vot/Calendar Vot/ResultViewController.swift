@@ -33,6 +33,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
         }
+        
+        
     }
     
     func createEvent(_ eventStore: EKEventStore, title: String, startDate: Date, endDate: Date, location: String)

@@ -10,8 +10,6 @@
 		4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C083DDC1DD549240097FC9C /* AppDelegate.swift */; };
 		4C083DE21DD549240097FC9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE01DD549240097FC9C /* Main.storyboard */; };
 		4C083DE71DD549240097FC9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */; };
-		EB0F0CDD1DFEC536003E96F0 /* EventAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0F0CDC1DFEC536003E96F0 /* EventAddedDelegate.swift */; };
-		EB0F0CDE1DFEC536003E96F0 /* EventAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0F0CDC1DFEC536003E96F0 /* EventAddedDelegate.swift */; };
 		EB0F0CE01DFECFFC003E96F0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0F0CDF1DFECFFC003E96F0 /* ResultViewController.swift */; };
 		EB0F0CE11DFECFFC003E96F0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0F0CDF1DFECFFC003E96F0 /* ResultViewController.swift */; };
 		EB1616CE1DF95A3B00CA578C /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1616CD1DF95A3B00CA578C /* Vote.swift */; };
@@ -85,7 +83,6 @@
 		4C083DE81DD549240097FC9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C083DED1DD549240097FC9C /* Calendar VotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calendar VotTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C083DF81DD549240097FC9C /* Calendar VotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Calendar VotUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB0F0CDC1DFEC536003E96F0 /* EventAddedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAddedDelegate.swift; sourceTree = "<group>"; };
 		EB0F0CDF1DFECFFC003E96F0 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		EB1616CD1DF95A3B00CA578C /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		EB1757291DDD7FC800A07263 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +137,6 @@
 		4C083DD01DD549240097FC9C = {
 			isa = PBXGroup;
 			children = (
-				EB0F0CDB1DFEC123003E96F0 /* Event */,
 				4C083DDB1DD549240097FC9C /* Calendar Vot */,
 				EB66BAE11DEFE77D004AC729 /* CalendarVotMessagesExtension */,
 				EB66BADE1DEFE77D004AC729 /* Frameworks */,
@@ -178,14 +174,6 @@
 				EB1616CD1DF95A3B00CA578C /* Vote.swift */,
 			);
 			path = "Calendar Vot";
-			sourceTree = "<group>";
-		};
-		EB0F0CDB1DFEC123003E96F0 /* Event */ = {
-			isa = PBXGroup;
-			children = (
-				EB0F0CDC1DFEC536003E96F0 /* EventAddedDelegate.swift */,
-			);
-			name = Event;
 			sourceTree = "<group>";
 		};
 		EB66BADE1DEFE77D004AC729 /* Frameworks */ = {
@@ -383,7 +371,6 @@
 				EBD299621DFE962900CF9D3D /* NewLocationCell.swift in Sources */,
 				4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */,
 				EB1757321DDD8B2B00A07263 /* LocationCell.swift in Sources */,
-				EB0F0CDD1DFEC536003E96F0 /* EventAddedDelegate.swift in Sources */,
 				EB17572A1DDD7FC800A07263 /* AddViewController.swift in Sources */,
 				EB0F0CE01DFECFFC003E96F0 /* ResultViewController.swift in Sources */,
 			);
@@ -415,7 +402,6 @@
 				EBD299631DFE962900CF9D3D /* NewLocationCell.swift in Sources */,
 				EB66BAE31DEFE77D004AC729 /* MessagesViewController.swift in Sources */,
 				EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */,
-				EB0F0CDE1DFEC536003E96F0 /* EventAddedDelegate.swift in Sources */,
 				EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */,
 				EB0F0CE11DFECFFC003E96F0 /* ResultViewController.swift in Sources */,
 			);

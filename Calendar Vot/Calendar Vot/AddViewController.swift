@@ -154,7 +154,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         title.font = UIFont.systemFont(ofSize: 15)
         title.textColor = UIColor.darkGray
         
-        
         let addDateBtn = UIButton(type: UIButtonType.contactAdd)
         addDateBtn.backgroundColor = UIColor.clear
         addDateBtn.frame = CGRect(x:tableView.frame.size.width - 30, y:10, width:30, height:30)

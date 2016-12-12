@@ -152,7 +152,7 @@ class Vote
         {
             full += count.1
         }
-        if full == 2 {return true}
+        if full >= 2 {return true}
         else {return false}
     }
 }
@@ -332,32 +332,38 @@ extension Vote
             NSForegroundColorAttributeName: textColor,
             ]
         
-        let imageSize = CGSize(width: 280, height: 280)
+        let imageSize = CGSize(width: 300, height: 280)
         let renderer = UIGraphicsImageRenderer(size: imageSize)
         let image = renderer.image { context in
-            let backgroundColor = UIColor.init(red: 220/255, green: 1.0, blue: 1.0, alpha: 1.0)
+            let backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 200/255, alpha: 1.0)
             backgroundColor.setFill()
             context.fill(CGRect(origin: CGPoint.zero, size: imageSize))
             
             var textHeight: CGFloat = fontSize
             
-            let string = self.voteName as NSString
-            string.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize),withAttributes: titleFontAttributes)
-            textHeight += fontSize
+            let string = "투표: \(self.voteName)" as NSString
+            string.draw(in: CGRect(x: 5, y: textHeight, width: 290, height: fontSize),withAttributes: titleFontAttributes)
+            textHeight += fontSize + 2
+            let dateString = "날짜 후보" as NSString
+            dateString.draw(in: CGRect(x: 5, y: textHeight, width: 290, height: fontSize),withAttributes: titleFontAttributes)
+            textHeight += fontSize + 2
             for data in self.dateData {
-                guard textHeight < 280 else {
+                guard textHeight < 300 else {
                     break
                 }
                 let element = dateFormatter.string(from: data.0) as NSString
-                element.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize), withAttributes: textFontAttributes)
+                element.draw(in: CGRect(x: 5, y: textHeight, width: 290, height: fontSize), withAttributes: textFontAttributes)
                 textHeight += fontSize
             }
+            let locaString = "장소 후보" as NSString
+            locaString.draw(in: CGRect(x: 5, y: textHeight, width: 290, height: fontSize),withAttributes: titleFontAttributes)
+            textHeight += fontSize + 2
             for data in self.locationData {
-                guard textHeight < 280 else {
+                guard textHeight < 300 else {
                     break
                 }
                 let element = data.0 as NSString
-                element.draw(in: CGRect(x: 5, y: textHeight, width: 270, height: fontSize), withAttributes: textFontAttributes)
+                element.draw(in: CGRect(x: 5, y: textHeight, width: 290, height: fontSize), withAttributes: textFontAttributes)
                 textHeight += fontSize
             }
         }

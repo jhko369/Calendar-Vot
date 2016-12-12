@@ -20,9 +20,13 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func AddBtn(_ sender: UIBarButtonItem)
     {
-        let eventStore = EKEventStore()
         
-        let endDate = startdate.addingTimeInterval(60 * 60) // One hour
+        let alert = UIAlertController(title: "Add Event", message: "Add this event to your calendar?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            let eventStore = EKEventStore()
+        
+        let endDate = self.startdate.addingTimeInterval(60 * 60) // One hour
         
         if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized)
         {
@@ -31,8 +35,19 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
             })
         } else {
-            createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
+            self.createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
         }
+        
+            print("Handle Ok logic here")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        
+        present(alert, animated: true, completion: nil)
+        
+        
         
         
     }
@@ -134,6 +149,11 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let cell = tableView.dequeueReusableCell(withIdentifier: "DateCell", for: indexPath)
             cell.textLabel?.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
             cell.detailTextLabel?.text = "득표수: \(voteData!.dateData[indexPath.row].1)"
+            
+            if(voteData!.dateData[indexPath.row].0 == startdate)
+            {
+                cell.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 200/255, alpha: 1.0)
+            }
             return cell
                 
             
@@ -143,6 +163,11 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
             cell.textLabel?.text = voteData!.locationData[indexPath.row].0
             cell.detailTextLabel?.text = "득표수: \(voteData!.locationData[indexPath.row].1)"
+            if(voteData!.locationData[indexPath.row].0 == location)
+            {
+                cell.backgroundColor = UIColor.init(red: 1.0, green: 1.0, blue: 200/255, alpha: 1.0)
+            }
+
             return cell
             
             

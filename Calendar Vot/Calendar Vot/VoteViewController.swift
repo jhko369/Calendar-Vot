@@ -29,9 +29,10 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     var dateCellCount:Int = 0
     var locaCellCount:Int = 0
     let dateFormatter = DateFormatter()
+    var lastSelect_Date:IndexPath?
+    var lastSelect_Loca:IndexPath?
+    var multi:String?
     
-    
-
     override func viewDidLoad()
     {
         //guard let voteData = voteData else { fatalError("만들어진 투표 없음") }
@@ -43,6 +44,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
         dateCellCount = (voteData?.dates.count)!
         locaCellCount = (voteData?.locations.count)!
+        multi = voteData?.multiSelect.option
         
     }
     
@@ -103,7 +105,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.startField.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
                 cell.countText.text = "득표수: \(voteData!.dateData[indexPath.row].1)"
                 return cell
-
+                
             }
         }
         else
@@ -123,7 +125,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.countText.text = "득표수: \(voteData!.locationData[indexPath.row].1)"
                 return cell
             }
-          
+            
         }
     }
     
@@ -173,13 +175,13 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         {
             title.text = "Title"
         }
-        
+            
         else if section == 1
         {
             title.text = "Date"
             headerView?.addSubview(addDateBtn)
         }
-        
+            
         else if section == 2
         {
             title.text = "Location"
@@ -187,7 +189,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         headerView?.addSubview(title)
-     
+        
         return headerView
     }
     
@@ -203,37 +205,64 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     func addRow_place(_:UIButton)
     {
         voteData?.locationData.append(("", 0))
-           print(voteData?.locationData)
+        print(voteData?.locationData)
         VoteTable.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let cell = tableView.cellForRow(at: indexPath)!
-        
-        if(indexPath.section == 1 || indexPath.section == 2)
+        if(indexPath.section == 1)
         {
-            if (cell.accessoryType == UITableViewCellAccessoryType.none)
+            if(cell.accessoryType == UITableViewCellAccessoryType.none)
             {
-                if(voteData?.multiSelect.option == "false")
+                voteData?.dateData[indexPath.row].1 += 1
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                if(multi == "false")
                 {
-                    for row in 0..<VoteTable.numberOfRows(inSection: indexPath.section)
+                    if let last = lastSelect_Date
                     {
-                        let index = IndexPath(row: row, section: indexPath.section)
-                        let cell = tableView.cellForRow(at: index)
-                        if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
-                        {
-                            cell?.accessoryType = UITableViewCellAccessoryType.none
-                        }
+                        let lastCell = tableView.cellForRow(at: last)
+                        lastCell?.accessoryType = UITableViewCellAccessoryType.none
+                        if((voteData?.dateData[last.row].1)! > 0)
+                        { voteData?.dateData[last.row].1 -= 1}
                     }
                 }
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
             }
-                
             else
             {
                 cell.accessoryType = UITableViewCellAccessoryType.none
+                if((voteData?.dateData[indexPath.row].1)! > 0 )
+                {voteData?.dateData[indexPath.row].1 -= 1}
             }
+            
+            lastSelect_Date = indexPath
+        }
+        else if(indexPath.section == 2)
+        {
+            if(cell.accessoryType == UITableViewCellAccessoryType.none)
+            {
+                voteData?.locationData[indexPath.row].1 += 1
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                if(multi == "false")
+                {
+                    if let last = lastSelect_Loca
+                    {
+                        let lastCell = tableView.cellForRow(at: last)
+                        lastCell?.accessoryType = UITableViewCellAccessoryType.none
+                        if((voteData?.locationData[last.row].1)! > 0)
+                        {voteData?.locationData[last.row].1 -= 1}
+                    }
+                }
+            }
+            else
+            {
+                cell.accessoryType = UITableViewCellAccessoryType.none
+                if((voteData?.locationData[indexPath.row].1)! > 0)
+                {voteData?.locationData[indexPath.row].1 -= 1}
+            }
+            
+            lastSelect_Loca = indexPath
         }
         
         tableView.reloadData()
@@ -241,30 +270,6 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func saveData()
     {
-        for section in 0..<VoteTable.numberOfSections {
-            for row in 0..<VoteTable.numberOfRows(inSection: section)
-            {
-                let indexPath = IndexPath(row: row, section: section)
-                let cell = VoteTable.cellForRow(at: indexPath)
-                
-                if(section == 1)
-                {
-                    if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
-                    {
-                        voteData?.dateData[row].1 += 1
-                    }
-                }
-                
-                if(section == 2)
-                {
-                    if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
-                    {
-                        voteData?.locationData[row].1 += 1
-                    }
-                }
-            }
-        }
-        
         voteData?.DateDataSetting()
         voteData?.LocationDataSetting()
         

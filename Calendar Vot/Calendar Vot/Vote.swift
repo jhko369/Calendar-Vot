@@ -82,6 +82,7 @@ class Vote
     var finishTime:FinishTime
     var created:Created
     var votedCount : VotedCount
+    var votedCountData : Int = 0
 
     let dateFormatter = DateFormatter()
     
@@ -142,12 +143,6 @@ class Vote
     func addLocation(locationItem:MeetingLocation)
     {
         self.locations.append(locationItem)
-    }
-    
-
-    func isFinished(now:Date) -> Bool
-    {
-        
     }
 }
 

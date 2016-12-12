@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>We need access to your calendar in order to help you track events.</string>
+	<string>abc</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

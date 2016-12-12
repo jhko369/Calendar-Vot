@@ -29,9 +29,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     var dateCellCount:Int = 0
     var locaCellCount:Int = 0
     let dateFormatter = DateFormatter()
-    var lastSelect_Date:IndexPath?
-    var lastSelect_Loca:IndexPath?
-    var multi:String?
+    
+    
 
     override func viewDidLoad()
     {
@@ -44,7 +43,6 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
         dateCellCount = (voteData?.dates.count)!
         locaCellCount = (voteData?.locations.count)!
-        multi = voteData?.multiSelect.option
         
     }
     
@@ -212,59 +210,32 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let cell = tableView.cellForRow(at: indexPath)!
-        if(indexPath.section == 1)
+        
+        if(indexPath.section == 1 || indexPath.section == 2)
         {
-            if(cell.accessoryType == UITableViewCellAccessoryType.none)
+            if (cell.accessoryType == UITableViewCellAccessoryType.none)
             {
-                voteData?.dateData[indexPath.row].1 += 1
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
-                if(multi == "false")
+                if(voteData?.multiSelect.option == "false")
                 {
-                    if let last = lastSelect_Date
+                    for row in 0..<VoteTable.numberOfRows(inSection: indexPath.section)
                     {
-                        let lastCell = tableView.cellForRow(at: last)
-                        lastCell?.accessoryType = UITableViewCellAccessoryType.none
-                        if((voteData?.dateData[last.row].1)! > 0)
-                        { voteData?.dateData[last.row].1 -= 1}
+                        let index = IndexPath(row: row, section: indexPath.section)
+                        let cell = tableView.cellForRow(at: index)
+                        if(cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
+                        {
+                            cell?.accessoryType = UITableViewCellAccessoryType.none
+                        }
                     }
                 }
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
             }
+                
             else
             {
                 cell.accessoryType = UITableViewCellAccessoryType.none
-                if((voteData?.dateData[indexPath.row].1)! > 0 )
-                {voteData?.dateData[indexPath.row].1 -= 1}
             }
-            
-            lastSelect_Date = indexPath
         }
-        else if(indexPath.section == 2)
-        {
-            if(cell.accessoryType == UITableViewCellAccessoryType.none)
-            {
-                voteData?.locationData[indexPath.row].1 += 1
-                cell.accessoryType = UITableViewCellAccessoryType.checkmark
-                if(multi == "false")
-                {
-                    if let last = lastSelect_Loca
-                    {
-                        let lastCell = tableView.cellForRow(at: last)
-                        lastCell?.accessoryType = UITableViewCellAccessoryType.none
-                        if((voteData?.locationData[last.row].1)! > 0)
-                        {voteData?.locationData[last.row].1 -= 1}
-                    }
-                }
-            }
-            else
-            {
-                cell.accessoryType = UITableViewCellAccessoryType.none
-                if((voteData?.locationData[indexPath.row].1)! > 0)
-                {voteData?.locationData[indexPath.row].1 -= 1}
-            }
-            
-            lastSelect_Loca = indexPath
-        }
-  
+        
         tableView.reloadData()
     }
     

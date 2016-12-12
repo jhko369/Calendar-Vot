@@ -1,25 +1,25 @@
 import UIKit
 
 
-protocol AddViewControllerDelegate: class {
+protocol AddViewControllerDelegate: class
+{
     func addViewController(_ controller: AddViewController)
 }
 
 class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    
     weak var delegate: AddViewControllerDelegate?
     @IBOutlet weak var AddVoteTable: UITableView!
     static let storyboardIdentifier = "AddView"
     
-    @IBAction func voteNameChanged(_ sender: UITextField) {
-       
+    @IBAction func voteNameChanged(_ sender: UITextField)
+    {
         tempVoteName = sender.text!
     }
     
     
-    @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
-        
+    @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem)
+    {
         if tempVoteName != ""
         {
             saveData(self.AddVoteTable)
@@ -31,7 +31,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             alert.addAction(ok)
             self.present(alert, animated: false)
         }
-        
     }
     
     
@@ -80,7 +79,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             return locationCount
         }
-        else{
+        else
+        {
             return optionCount
         }
     }
@@ -90,14 +90,18 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         if indexPath.section == 0
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for:indexPath)
+            
             cell.textLabel?.text = ""
+            
             return cell
         }
         else if indexPath.section == 1
         {
             let cell:DateCell
+            
             cell = tableView.dequeueReusableCell(withIdentifier: "DateCell") as! DateCell
             cell.index = indexPath.row
+            
             return cell
             
         }
@@ -105,16 +109,18 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         else if indexPath.section == 2
         {
             let cell:LocationCell
+            
             cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
             cell.index = indexPath.row
+            
             return cell
         }
         else
         {
-            
             if( indexPath.row == 3)
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DateCell") as! DateCell
+                
                 return cell
                 
             }
@@ -122,7 +128,9 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
                 let option = options[indexPath.row]
+                
                 cell.textLabel?.text = option
+                
                 return cell
             }
         }
@@ -185,7 +193,8 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         if(indexPath.section == 3)
         {
             let cell = tableView.cellForRow(at: indexPath)!
@@ -202,6 +211,7 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             if(indexPath.row == 2)
             {
                 tableView.beginUpdates()
+                
                 if(cell.accessoryType == UITableViewCellAccessoryType.checkmark)
                 {
                     optionCount += 1
@@ -236,19 +246,18 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         //1. 투표 이름
         voteData.voteName = tempVoteName
 
-        for section in 0..<AddVoteTable.numberOfSections {
+        for section in 0..<AddVoteTable.numberOfSections
+        {
             for row in 0..<AddVoteTable.numberOfRows(inSection: section)
             {
                 let indexPath = IndexPath(row: row, section: section)
-                print("indexPath : \(indexPath)")
-                
 
                 if(section == 1)
                 {
                     let cell:DateCell = tableView.cellForRow(at: indexPath) as! DateCell
+                    
                     if(cell.startField.text != "")
                     {
-
                         voteData.dateData.append((cell.startDate!, 0))
                     }
                     else {continue}
@@ -260,13 +269,15 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     
                     if(cell.LocationField.text != "")
                     {
-                        voteData.locationData.append((cell.LocationField!.text!, 0))                    }
+                        voteData.locationData.append((cell.LocationField!.text!, 0))
+                    }
                 }
                     
                 else if(section == 3)
                 {
                     //Vote 인스턴스에 옵션 정보 저장 .
                     let cell = tableView.cellForRow(at: indexPath)
+                    
                     if(row == 0 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
                         voteData.multiSelect.option = "true"
@@ -278,12 +289,12 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     else if(row == 2 && cell?.accessoryType == UITableViewCellAccessoryType.checkmark)
                     {
                         voteData.finishSet.option = "true"
-                    
                     }
                     
                     if(row == 3)
                     {
                         let cell:DateCell = tableView.cellForRow(at: indexPath) as! DateCell
+                        
                         if(cell.startField.text != "")
                         {
                             voteData.finishTime.time = dateFormatter.string(from: cell.startDate!)
@@ -293,28 +304,10 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
             }
         }
-        
         voteData.created.isCreated = "true"
-        
         
         voteData.DateDataSetting()
         voteData.LocationDataSetting()
         delegate?.addViewController(self)
-        
- 
-        
-        print(voteData.voteName)
-        print(voteData.dates)
-        print(voteData.dateData)
-        print(voteData.locations)
-        print(voteData.locationData)
-        print(voteData.multiSelect)
-        print(voteData.addItem)
-        print(voteData.finishSet)
-        print(voteData.createTime)
-        print(voteData.finishTime)
-        print(voteData.created)
-
-        
     }
 }

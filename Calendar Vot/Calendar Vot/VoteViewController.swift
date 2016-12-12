@@ -24,6 +24,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         saveData()
     }
     
+    //-> Vote Data
     var voteData:Vote?
     let votetitle:String = ""
     var dateCellCount:Int = 0
@@ -32,6 +33,10 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     var lastSelect_Date:IndexPath?
     var lastSelect_Loca:IndexPath?
     var multi:String?
+    
+    //-> User's Selection
+    var selectDate : [Date] = []
+    var selectLocation : [String] = []
     
     override func viewDidLoad()
     {
@@ -46,6 +51,10 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         locaCellCount = (voteData?.locations.count)!
         multi = voteData?.multiSelect.option
         
+        if(voteData?.selectDateData.count != 0 && voteData?.selectLocationData.count != 0)
+        {
+            ApplySelectData()
+        }
     }
     
     override func didReceiveMemoryWarning()
@@ -218,6 +227,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 voteData?.dateData[indexPath.row].1 += 1
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                selectDate.append((voteData?.dateData[indexPath.row].0)!) // 선택 날짜 배열에 추가
+                
                 if(multi == "false")
                 {
                     if let last = lastSelect_Date
@@ -226,6 +237,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                         lastCell?.accessoryType = UITableViewCellAccessoryType.none
                         if((voteData?.dateData[last.row].1)! > 0)
                         { voteData?.dateData[last.row].1 -= 1}
+                        
+                        selectDate.remove(at: last.row) // 선택 날짜 배열에서 삭제
                     }
                 }
             }
@@ -234,6 +247,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.accessoryType = UITableViewCellAccessoryType.none
                 if((voteData?.dateData[indexPath.row].1)! > 0 )
                 {voteData?.dateData[indexPath.row].1 -= 1}
+                
+                selectDate.remove(at: indexPath.row) // 선택 날짜 배열에서 삭제
             }
             
             lastSelect_Date = indexPath
@@ -244,6 +259,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 voteData?.locationData[indexPath.row].1 += 1
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                selectLocation.append((voteData?.locationData[indexPath.row].0)!) // 선택 장소 배열에 추가
+                
                 if(multi == "false")
                 {
                     if let last = lastSelect_Loca
@@ -252,6 +269,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                         lastCell?.accessoryType = UITableViewCellAccessoryType.none
                         if((voteData?.locationData[last.row].1)! > 0)
                         {voteData?.locationData[last.row].1 -= 1}
+                        
+                        selectLocation.remove(at: last.row) // 선택 장소 배열에서 삭제
                     }
                 }
             }
@@ -260,6 +279,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.accessoryType = UITableViewCellAccessoryType.none
                 if((voteData?.locationData[indexPath.row].1)! > 0)
                 {voteData?.locationData[indexPath.row].1 -= 1}
+                
+                selectLocation.remove(at: indexPath.row) // 선택 장소 배열에서 삭제
             }
             
             lastSelect_Loca = indexPath
@@ -273,6 +294,47 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         voteData?.DateDataSetting()
         voteData?.LocationDataSetting()
         
+        voteData?.selectDate = selectDate
+        voteData?.selectLocation = selectLocation
+        voteData?.SelectDataSetting()
+        
         delegate?.voteViewController(self)
+    }
+    
+    func ApplySelectData()
+    {
+        for section in 0...VoteTable.numberOfSections
+        {
+            for row in 0...VoteTable.numberOfRows(inSection: section)
+            {
+                let indexPath = IndexPath(row: row, section: section)
+                
+                if(section == 1)
+                {
+                    let cell = VoteTable.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
+                    
+                    for date in (voteData?.selectDate)!
+                    {
+                        if(cell.textLabel?.text == dateFormatter.string(from: date))
+                        {
+                            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                        }
+                    }
+                }
+                
+                if(section == 2)
+                {
+                    let cell = VoteTable.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
+                    
+                    for location in (voteData?.selectLocation)!
+                    {
+                        if(cell.textLabel?.text == location)
+                        {
+                            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -66,6 +66,18 @@ struct VotedCount
     var count : String
 }
 
+struct SelectDate
+{
+    static let key = "SelectDate"
+    var date : String
+}
+
+struct SelectLocation
+{
+    static let key = "SelectLocation"
+    var location : String
+}
+
 class Vote
 {
     static let key = "name"
@@ -83,6 +95,12 @@ class Vote
     var created:Created
     var votedCount : VotedCount
     var votedCountData : Int = 0
+    
+    //-> User's Selection
+    var selectDate : [Date] = []
+    var selectLocation : [String] = []
+    var selectDateData:[SelectDate] = []
+    var selectLocationData:[SelectLocation] = []
 
     let dateFormatter = DateFormatter()
     
@@ -135,6 +153,25 @@ class Vote
         }
     }
     
+    func SelectDataSetting()
+    {
+        for date in selectDate
+        {
+            var dateString : String
+            
+            dateString = dateFormatter.string(from: date)
+            selectDateData.append(SelectDate(date : dateString))
+        }
+        
+        for location in selectLocation
+        {
+            var locationString : String
+            
+            locationString = location
+            selectLocationData.append(SelectLocation(location : locationString))
+        }
+    }
+    
     func addDate(dateItem:MeetingDate)
     {
         self.dates.append(dateItem)
@@ -181,6 +218,15 @@ extension Vote
         items.append(URLQueryItem(name: Created.key, value: created.isCreated))
         
         items.append(URLQueryItem(name: VotedCount.key, value: votedCount.count))
+        
+        for selectDate in selectDateData
+        {
+            items.append(URLQueryItem(name: SelectDate.key, value: selectDate.date))
+        }
+        for selectLocation in selectLocationData
+        {
+            items.append(URLQueryItem(name: SelectLocation.key, value: selectLocation.location))
+        }
 
         return items
     }
@@ -241,9 +287,21 @@ extension Vote
             case VotedCount.key:
                 votedCount.count = value
                 
+            case SelectDate.key:
+                selectDate.append(dateFormatter.date(from: value)!)
+                
+            case SelectLocation.key:
+                selectLocation.append(value)
+                
             default:
                 break
             }
+            
+        }
+        
+        for data in selectLocation
+        {
+            print(data)
         }
     }
 }

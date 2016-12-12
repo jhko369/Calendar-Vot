@@ -113,7 +113,6 @@ class MessagesViewController: MSMessagesAppViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier:VoteViewController.storyboardIdentifier) as? VoteViewController else {fatalError("VoteView 생성 실패")}
 
         controller.voteData = vote
-        //controller.SettingData()
         controller.delegate = self
         
         return controller
@@ -212,7 +211,8 @@ extension MessagesViewController: AddViewControllerDelegate {
         dismiss()
     }
 }
-extension MessagesViewController: VoteViewControllerDelegate {
+extension MessagesViewController: VoteViewControllerDelegate
+{
     func voteViewController(_ controller: VoteViewController) {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         guard let voteData = controller.voteData else { fatalError("Expected the controller to be displaying a shoppingList") }
@@ -231,4 +231,13 @@ extension MessagesViewController: VoteViewControllerDelegate {
         dismiss()
     }
 }
+    var dateData : [Date] = []
+    var locationData : [String] = []
+    
+    func SaveSelectData(dates : [Date], locations : [String])
+    {
+        dateData = dates
+        locationData = locations
+    }
+
 

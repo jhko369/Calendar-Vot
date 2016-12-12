@@ -124,7 +124,8 @@ class MessagesViewController: MSMessagesAppViewController {
         print("ResultView 생성")
         guard let controller = storyboard?.instantiateViewController(withIdentifier:ResultViewController.storyboardIdentifier) as? ResultViewController else {fatalError("ResultView 생성 실패")}
         
-        controller.voteData = vote        
+        controller.voteData = vote
+        controller.SettingVoteResult()
         return controller
     }
     

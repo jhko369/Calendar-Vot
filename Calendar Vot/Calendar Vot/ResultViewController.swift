@@ -35,7 +35,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func createEvent(_ eventStore: EKEventStore, title: String, startDate: Date, endDate: Date, location: String) {
+    func createEvent(_ eventStore: EKEventStore, title: String, startDate: Date, endDate: Date, location: String)
+    {
         let event = EKEvent(eventStore: eventStore)
         
         event.title = title
@@ -55,6 +56,31 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var voteData:Vote?
     let votetitle:String = ""
     let dateFormatter = DateFormatter()
+    
+    func SettingVoteResult()
+    {
+        self.voteName = (voteData?.voteName)!
+        
+        var tempDate : (Date, Int) = (Date(), 0)
+        for date in (voteData?.dateData)!
+        {
+            if(date.1 > tempDate.1)
+            {
+                tempDate = date
+            }
+        }
+        self.startdate = tempDate.0
+        
+        var tempLocation : (String, Int) = ("", 0)
+        for location in (voteData?.locationData)!
+        {
+            if(location.1 > tempLocation.1)
+            {
+                tempLocation = location
+            }
+        }
+        self.location = tempLocation.0
+    }
     
     override func viewDidLoad()
     {

@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>We need access to your calendar in order to help you track events.</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>kr</string>
+	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Calendar Vot</string>
 	<key>CFBundleExecutable</key>
@@ -24,8 +26,6 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>We need access to your calendar in order to help you track events.</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionMainStoryboard</key>

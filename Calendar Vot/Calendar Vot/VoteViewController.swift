@@ -60,9 +60,10 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         case 0:
             return 1
         case 1:
-            return dateCellCount
+            print("카운트: \((voteData?.dateData.count)!)")
+            return (voteData?.dateData.count)!
         case 2:
-            return locaCellCount
+            return (voteData?.locationData.count)!
         default:
             return 0
         }
@@ -82,33 +83,36 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else if indexPath.section == 1
         {
-            //원래 사이즈까지는 VoteDateCell, 이후는 textfield있는 cell로
-            let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
-            if(indexPath.row < (voteData?.dates.count)!)
+            if(indexPath.row < (voteData?.dateData.count)!)
             {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
                 cell.textLabel?.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
                 cell.detailTextLabel?.text = "\(voteData!.dateData[indexPath.row].1)"
+                return cell
             }
             else
             {
-                cell.textLabel?.text = ""
-                cell.detailTextLabel?.text = ""
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewDateCell") as! NewDateCell
+                cell.startField.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
+                cell.countText.text = "\(voteData!.dateData[indexPath.row].1)"
+                return cell
+
             }
-        
-            return cell
         }
         else
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
-            if(indexPath.row < (voteData?.locations.count)!)
+            if(indexPath.row < (voteData?.locationData.count)!)
             {
                 cell.textLabel?.text = voteData!.locationData[indexPath.row].0
                 cell.detailTextLabel?.text = "\(voteData!.locationData[indexPath.row].1)"
             }
             else
             {
-                cell.textLabel?.text = ""
-                cell.detailTextLabel?.text = ""
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NewLocationCell") as! NewLocationCell
+                cell.locationField.text = dateFormatter.string(from: (voteData!.dateData[indexPath.row].0))
+                
+                return cell
             }
             return cell
         }
@@ -180,16 +184,14 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func addRow_date(_: UIButton)
     {
-       // var date : MeetingDate = MeetingDate()
-       // voteData.date[voteData.date.count] = date
-        
-        dateCellCount += 1
-        VoteTable.reloadData()
+        VoteTable.beginUpdates()
+        voteData?.dateData.append((Date.init(), 0))
+        VoteTable.endUpdates()
     }
     
     func addRow_place(_:UIButton)
     {
-        locaCellCount += 1
+        voteData?.locationData.append(("", 0))
         VoteTable.reloadData()
     }
     

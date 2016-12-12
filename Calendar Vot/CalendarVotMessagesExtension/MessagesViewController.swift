@@ -134,7 +134,7 @@ class MessagesViewController: MSMessagesAppViewController {
         components.queryItems = voteData.queryItems
         
         let layout = MSMessageTemplateLayout()
-      //  layout.image = voteData.renderSticker(opaque: true)
+        layout.image = voteData.renderSticker(opaque: true)
         layout.caption = caption
         
         let message = MSMessage(session: session ?? MSSession())

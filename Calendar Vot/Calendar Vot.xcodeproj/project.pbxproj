@@ -29,6 +29,10 @@
 		EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757291DDD7FC800A07263 /* AddViewController.swift */; };
 		EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17572D1DDD8AE300A07263 /* DateCell.swift */; };
 		EB66BAF81DF00408004AC729 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1757311DDD8B2B00A07263 /* LocationCell.swift */; };
+		EBD2995F1DFE95BD00CF9D3D /* NewDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2995E1DFE95BD00CF9D3D /* NewDateCell.swift */; };
+		EBD299601DFE95BD00CF9D3D /* NewDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2995E1DFE95BD00CF9D3D /* NewDateCell.swift */; };
+		EBD299621DFE962900CF9D3D /* NewLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD299611DFE962900CF9D3D /* NewLocationCell.swift */; };
+		EBD299631DFE962900CF9D3D /* NewLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD299611DFE962900CF9D3D /* NewLocationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +94,8 @@
 		EB66BAE71DEFE77D004AC729 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB66BAE91DEFE77D004AC729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
+		EBD2995E1DFE95BD00CF9D3D /* NewDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDateCell.swift; sourceTree = "<group>"; };
+		EBD299611DFE962900CF9D3D /* NewLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLocationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,12 +156,14 @@
 			isa = PBXGroup;
 			children = (
 				EB17572B1DDD837000A07263 /* Images.xcassets */,
+				4C083DE81DD549240097FC9C /* Info.plist */,
 				4C083DDC1DD549240097FC9C /* AppDelegate.swift */,
 				4C083DE01DD549240097FC9C /* Main.storyboard */,
 				4C083DE51DD549240097FC9C /* LaunchScreen.storyboard */,
 				EB17572D1DDD8AE300A07263 /* DateCell.swift */,
-				4C083DE81DD549240097FC9C /* Info.plist */,
 				EB1757311DDD8B2B00A07263 /* LocationCell.swift */,
+				EBD2995E1DFE95BD00CF9D3D /* NewDateCell.swift */,
+				EBD299611DFE962900CF9D3D /* NewLocationCell.swift */,
 				EB1757291DDD7FC800A07263 /* AddViewController.swift */,
 				EB66BAF21DEFEF6D004AC729 /* VoteViewController.swift */,
 				EB5C730B1DF92144006560D2 /* StartViewController.swift */,
@@ -355,6 +363,8 @@
 				EB5C730C1DF92144006560D2 /* StartViewController.swift in Sources */,
 				EB17572E1DDD8AE300A07263 /* DateCell.swift in Sources */,
 				EB1616CE1DF95A3B00CA578C /* Vote.swift in Sources */,
+				EBD2995F1DFE95BD00CF9D3D /* NewDateCell.swift in Sources */,
+				EBD299621DFE962900CF9D3D /* NewLocationCell.swift in Sources */,
 				4C083DDD1DD549240097FC9C /* AppDelegate.swift in Sources */,
 				EB1757321DDD8B2B00A07263 /* LocationCell.swift in Sources */,
 				EB17572A1DDD7FC800A07263 /* AddViewController.swift in Sources */,
@@ -383,6 +393,8 @@
 				EB5C730D1DF92144006560D2 /* StartViewController.swift in Sources */,
 				EB66BAF41DEFEF6D004AC729 /* VoteViewController.swift in Sources */,
 				EB1616CF1DF95A3B00CA578C /* Vote.swift in Sources */,
+				EBD299601DFE95BD00CF9D3D /* NewDateCell.swift in Sources */,
+				EBD299631DFE962900CF9D3D /* NewLocationCell.swift in Sources */,
 				EB66BAE31DEFE77D004AC729 /* MessagesViewController.swift in Sources */,
 				EB66BAF51DEFEF79004AC729 /* AddViewController.swift in Sources */,
 				EB66BAF61DF00400004AC729 /* DateCell.swift in Sources */,

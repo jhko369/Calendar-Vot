@@ -12,52 +12,49 @@ import EventKit
 
 class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-
+    var voteName :String = ""
+    var startdate : Date = Date()
+    var location : String = ""
+    
     @IBOutlet weak var ResultTable: UITableView!
     
-    @IBAction func AddBtn(_ sender: UIBarButtonItem) {
+    @IBAction func AddBtn(_ sender: UIBarButtonItem)
+    {
+        let eventStore = EKEventStore()
         
+        let endDate = startdate.addingTimeInterval(60 * 60) // One hour
         
+        if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized)
+        {
+            eventStore.requestAccess(to: .event, completion: {
+                granted, error in
+                self.createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
+            })
+        } else {
+            createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
+        }
     }
     
+    func createEvent(_ eventStore: EKEventStore, title: String, startDate: Date, endDate: Date, location: String) {
+        let event = EKEvent(eventStore: eventStore)
+        
+        event.title = title
+        event.startDate = startDate
+        event.endDate = endDate
+        event.location = location
+        event.calendar = eventStore.defaultCalendarForNewEvents
+        do {
+            try eventStore.save(event, span: .thisEvent)
+        } catch {
+            print("Bad things happened")
+        }
+    }
     
     static let storyboardIdentifier = "ResultView"
 
-    @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
-        
-        //        // Create an Event Store instance
-        //        let eventStore = EKEventStore();
-        //        if let calendarForEvent = eventStore.calendar(withIdentifier: self.calendar.calendarIdentifier)
-        //        {
-        //            let newEvent = EKEvent(eventStore: eventStore)
-        //
-        //            newEvent.calendar = calendarForEvent
-        //            newEvent.title = (voteData?.voteName)!
-        //            newEvent.location = "여기"
-        //            newEvent.startDate = Date.init()
-        //            newEvent.endDate = Date.init(timeIntervalSinceNow: 60*60*24)
-        //
-        //            // Save the event using the Event Store instance
-        //            do {
-        //                try eventStore.save(newEvent, span: .thisEvent, commit: true)
-        //                eventdelegate?.eventDidAdd()
-        //
-        //                self.dismiss(animated: true, completion: nil)
-        //            } catch {
-        //                let alert = UIAlertController(title: "Event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
-        //                let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        //                alert.addAction(OKAction)
-        //
-        //                self.present(alert, animated: true, completion: nil)
-        //            }
-        //        }
-    }
-    
     var voteData:Vote?
     let votetitle:String = ""
     let dateFormatter = DateFormatter()
-    
-    
     
     override func viewDidLoad()
     {
@@ -68,8 +65,6 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ResultTable.delegate = self
         dateFormatter.locale = Locale(identifier: "ko_kr")
         dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
-
-        
     }
     
     override func didReceiveMemoryWarning()

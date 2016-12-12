@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 
 
 protocol VoteViewControllerDelegate: class {
@@ -16,11 +17,13 @@ protocol VoteViewControllerDelegate: class {
 class VoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     weak var delegate: VoteViewControllerDelegate?
+    
     static let storyboardIdentifier = "VoteView"
     @IBOutlet weak var VoteTable: UITableView!
     @IBAction func DoneBtnPressed(_ sender: UIBarButtonItem) {
         saveData()
     }
+    
     var voteData:Vote?
     let votetitle:String = ""
     var dateCellCount:Int = 0

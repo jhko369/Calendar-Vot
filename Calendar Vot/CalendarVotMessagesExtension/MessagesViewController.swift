@@ -49,14 +49,15 @@ class MessagesViewController: MSMessagesAppViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "ko_kr")
             dateFormatter.dateFormat = "yyyy.MM.dd(E) a hh:mm"
-            let now:Date = Date.init()
+    
             if (voteData.created.isCreated == "true")
             {
                 print("created")
-                if(now < dateFormatter.date(from: (voteData.finishTime.time))!)
+                print(voteData.isFinished())
+                if(voteData.isFinished() != true)
                 {controller = instantiateVoteViewController(with: voteData)}
                 else
-                { controller = instantiateVoteViewController(with: voteData)
+                { controller = instantiateResultViewController(with: voteData)
                 //투표 종료 후 뷰로 바꿔야함.
                 }
             }
@@ -115,6 +116,15 @@ class MessagesViewController: MSMessagesAppViewController {
         //controller.SettingData()
         controller.delegate = self
         
+        return controller
+    }
+    
+    
+    private func instantiateResultViewController(with vote:Vote) -> UIViewController {
+        print("ResultView 생성")
+        guard let controller = storyboard?.instantiateViewController(withIdentifier:ResultViewController.storyboardIdentifier) as? ResultViewController else {fatalError("ResultView 생성 실패")}
+        
+        controller.voteData = vote        
         return controller
     }
     
@@ -179,6 +189,9 @@ extension MessagesViewController: StartViewControllerDelegate{
         requestPresentationStyle(.expanded)
     }
 }
+
+
+
 extension MessagesViewController: AddViewControllerDelegate {
     func addViewController(_ controller: AddViewController) {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }

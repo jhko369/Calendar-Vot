@@ -144,6 +144,17 @@ class Vote
     {
         self.locations.append(locationItem)
     }
+    
+    func isFinished() ->Bool
+    {
+        var full = 0
+        for count in self.dateData
+        {
+            full += count.1
+        }
+        if full == 2 {return true}
+        else {return false}
+    }
 }
 
 extension Vote

@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>We need access to your calendar in order to help you track events.</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>kr</string>
 	<key>CFBundleDisplayName</key>
-	<string>CalendarVotMessagesExtension</string>
+	<string>Calendar Vot</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

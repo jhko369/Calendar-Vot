@@ -234,7 +234,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 voteData?.dateData[indexPath.row].1 += 1
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
-                selectDate.append((voteData?.dateData[indexPath.row].0)!) // 선택 날짜 배열에 추가
+             //   selectDate.append((voteData?.dateData[indexPath.row].0)!) // 선택 날짜 배열에 추가
                 
                 if(multi == "false")
                 {
@@ -245,7 +245,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                         if((voteData?.dateData[last.row].1)! > 0)
                         { voteData?.dateData[last.row].1 -= 1}
                         
-                        selectDate.remove(at: last.row) // 선택 날짜 배열에서 삭제
+                //        selectDate.remove(at: last.row) // 선택 날짜 배열에서 삭제
                     }
                 }
             }
@@ -255,7 +255,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if((voteData?.dateData[indexPath.row].1)! > 0 )
                 {voteData?.dateData[indexPath.row].1 -= 1}
                 
-                selectDate.remove(at: indexPath.row) // 선택 날짜 배열에서 삭제
+               // selectDate.remove(at: indexPath.row) // 선택 날짜 배열에서 삭제
             }
             
             lastSelect_Date = indexPath
@@ -277,7 +277,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                         if((voteData?.locationData[last.row].1)! > 0)
                         {voteData?.locationData[last.row].1 -= 1}
                         
-                        selectLocation.remove(at: last.row) // 선택 장소 배열에서 삭제
+                      //  selectLocation.remove(at: last.row) // 선택 장소 배열에서 삭제
                     }
                 }
             }
@@ -287,7 +287,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if((voteData?.locationData[indexPath.row].1)! > 0)
                 {voteData?.locationData[indexPath.row].1 -= 1}
                 
-                selectLocation.remove(at: indexPath.row) // 선택 장소 배열에서 삭제
+                //selectLocation.remove(at: indexPath.row) // 선택 장소 배열에서 삭제
             }
             
             lastSelect_Loca = indexPath
@@ -304,8 +304,8 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         {voteData?.created.isCreated = "finish"}
 
         
-        voteData?.selectDate = selectDate
-        voteData?.selectLocation = selectLocation
+      //  voteData?.selectDate = selectDate
+      //  voteData?.selectLocation = selectLocation
         voteData?.SelectDataSetting()
         
         delegate?.voteViewController(self)

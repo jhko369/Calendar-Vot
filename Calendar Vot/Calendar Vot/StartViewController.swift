@@ -144,14 +144,4 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "resultSegue"{
-            if let destination = segue.destination as? ResultViewController , let selectedIndex = StartTable.indexPathForSelectedRow?.row {
-                destination.voteData = votes[selectedIndex] as Vote
-            }
-        }
-        
-    }
 }

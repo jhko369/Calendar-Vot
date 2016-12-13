@@ -52,14 +52,14 @@ class MessagesViewController: MSMessagesAppViewController {
     
             if (voteData.created.isCreated == "true")
             {
-                print("created")
-                print(voteData.isFinished())
-                if(voteData.isFinished() != true)
-                {controller = instantiateVoteViewController(with: voteData)}
-                else
-                { controller = instantiateResultViewController(with: voteData)
-                //투표 종료 후 뷰로 바꿔야함.
-                }
+                print(voteData.finishTime.time)
+                controller = instantiateVoteViewController(with: voteData)
+            
+            }
+            else if (voteData.created.isCreated == "finish")
+            {
+                controller = instantiateResultViewController(with: voteData)
+
             }
             else
             {

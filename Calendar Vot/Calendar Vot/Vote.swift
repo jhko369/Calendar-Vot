@@ -184,13 +184,7 @@ class Vote
     
     func isFinished() ->Bool
     {
-        var full = 0
-        for count in self.dateData
-        {
-            full += count.1
-        }
-        if full >= 2 {return true}
-        else {return false}
+        return true;
     }
 }
 

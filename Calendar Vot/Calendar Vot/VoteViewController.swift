@@ -24,6 +24,12 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         saveData()
     }
     
+    @IBAction func FinishBtnPressed(_ sender: UIBarButtonItem) {
+        
+        finishVote = true
+        saveData()
+        
+    }
     //-> Vote Data
     var voteData:Vote?
     let votetitle:String = ""
@@ -33,6 +39,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     var lastSelect_Date:IndexPath?
     var lastSelect_Loca:IndexPath?
     var multi:String?
+    var finishVote:Bool = false
     
     //-> User's Selection
     var selectDate : [Date] = []
@@ -293,6 +300,9 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         voteData?.DateDataSetting()
         voteData?.LocationDataSetting()
+        if(finishVote)
+        {voteData?.created.isCreated = "finish"}
+
         
         voteData?.selectDate = selectDate
         voteData?.selectLocation = selectLocation
@@ -336,5 +346,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
+        
+        VoteTable.reloadData()
     }
 }

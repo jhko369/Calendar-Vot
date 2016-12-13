@@ -60,7 +60,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if(voteData?.selectDateData.count != 0 && voteData?.selectLocationData.count != 0)
         {
-            ApplySelectData()
+            //ApplySelectData()
         }
     }
     

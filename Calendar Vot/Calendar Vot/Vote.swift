@@ -292,11 +292,6 @@ extension Vote
             }
             
         }
-        
-        for data in selectLocation
-        {
-            print(data)
-        }
     }
 }
 

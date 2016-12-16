@@ -1,3 +1,17 @@
 # Calendar-Vot
 
-iMessage앱 내에서 Calendar Vot을 이용해서 약속 날짜, 시간, 장소 및 참가 여부를 투표로 정해서 만난다.
+Calendar Vot은 iMessage 내에서 투표를 통해 일정과 장소을 선정하여 모임 일정을 잡고 캘린더에 연동할 수 있는 메시지앱 입니다.
+
+
+홈페이지: 
+
+https://projectintheclass.github.io/Calendar-Vot
+
+시연 동영상(YouTube): 
+
+https://youtu.be/bgT3bJK_bNg
+
+<img src = "https://projectintheclass.github.io/Calendar-Vot/images/fulls/0-0-appstore.jpg" width = 200>
+<img src = "https://projectintheclass.github.io/Calendar-Vot/images/fulls/1-1-startview.jpg" width = 200>
+<img src = "https://projectintheclass.github.io/Calendar-Vot/images/fulls/2-1-send.jpg" width = 200>
+<img src = "https://projectintheclass.github.io/Calendar-Vot/images/fulls/3-3-calendar.jpg" width = 200>

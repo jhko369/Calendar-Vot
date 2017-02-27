@@ -242,7 +242,6 @@ class AddViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func saveData(_ tableView: UITableView)
     {
-        //1. 투표 이름
         voteData.voteName = tempVoteName
 
         for section in 0..<AddVoteTable.numberOfSections

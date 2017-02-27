@@ -35,15 +35,14 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
-        // Determine the controller to present.
+
         let controller: UIViewController
         if presentationStyle == .compact {
-            // 투표 만들기, 투표 히스토리 보여주는 뷰
-           
-            controller = instantiateStartViewController()
+
+            controller = instantiateStartViewController() //startView
         }
         else {
-       
+            //presentationStytle == .expanded
             let voteData = Vote(message: conversation.selectedMessage) ?? Vote()
 
             let dateFormatter = DateFormatter()
@@ -63,8 +62,6 @@ class MessagesViewController: MSMessagesAppViewController {
             }
             else
             {
-                print("creating")
-
                 controller = instantiateAddViewController()
             }
         }
@@ -93,8 +90,9 @@ class MessagesViewController: MSMessagesAppViewController {
     
     
     private func instantiateStartViewController() -> UIViewController {
-        print("StartView 생성")
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: StartViewController.storyboardIdentifier) as? StartViewController else { fatalError("Start view 생성 실패") }
+        //StartView 생성
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: StartViewController.storyboardIdentifier) as? StartViewController
+            else { fatalError("Start view 생성 실패") }
         controller.delegate = self
         
         return controller
@@ -109,8 +107,9 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     private func instantiateVoteViewController(with vote:Vote) -> UIViewController {
-        print("VoteView 생성")
-        guard let controller = storyboard?.instantiateViewController(withIdentifier:VoteViewController.storyboardIdentifier) as? VoteViewController else {fatalError("VoteView 생성 실패")}
+        //VoteView 생성
+        guard let controller = storyboard?.instantiateViewController(withIdentifier:VoteViewController.storyboardIdentifier) as? VoteViewController
+            else {fatalError("VoteView 생성 실패")}
 
         controller.voteData = vote
         controller.delegate = self
@@ -120,7 +119,7 @@ class MessagesViewController: MSMessagesAppViewController {
     
     
     private func instantiateResultViewController(with vote:Vote) -> UIViewController {
-        print("ResultView 생성")
+        //ResultView 생성
         guard let controller = storyboard?.instantiateViewController(withIdentifier:ResultViewController.storyboardIdentifier) as? ResultViewController else {fatalError("ResultView 생성 실패")}
         
         controller.voteData = vote

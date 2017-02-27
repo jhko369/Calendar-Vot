@@ -58,10 +58,6 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         locaCellCount = (voteData?.locations.count)!
         multi = voteData?.multiSelect.option
         
-        if(voteData?.selectDateData.count != 0 && voteData?.selectLocationData.count != 0)
-        {
-            //ApplySelectData()
-        }
     }
     
     override func didReceiveMemoryWarning()
@@ -234,8 +230,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 voteData?.dateData[indexPath.row].1 += 1
                 cell.accessoryType = UITableViewCellAccessoryType.checkmark
-             //   selectDate.append((voteData?.dateData[indexPath.row].0)!) // 선택 날짜 배열에 추가
-                
+
                 if(multi == "false")
                 {
                     if let last = lastSelect_Date
@@ -311,42 +306,4 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         delegate?.voteViewController(self)
     }
     
-    func ApplySelectData()
-    {
-        for section in 0...VoteTable.numberOfSections
-        {
-            for row in 0...VoteTable.numberOfRows(inSection: section)
-            {
-                let indexPath = IndexPath(row: row, section: section)
-                
-                if(section == 1)
-                {
-                    let cell = VoteTable.dequeueReusableCell(withIdentifier: "VoteDateCell", for: indexPath)
-                    
-                    for date in (voteData?.selectDate)!
-                    {
-                        if(cell.textLabel?.text == dateFormatter.string(from: date))
-                        {
-                            cell.accessoryType = UITableViewCellAccessoryType.checkmark
-                        }
-                    }
-                }
-                
-                if(section == 2)
-                {
-                    let cell = VoteTable.dequeueReusableCell(withIdentifier: "VoteLocationCell", for: indexPath)
-                    
-                    for location in (voteData?.selectLocation)!
-                    {
-                        if(cell.textLabel?.text == location)
-                        {
-                            cell.accessoryType = UITableViewCellAccessoryType.checkmark
-                        }
-                    }
-                }
-            }
-        }
-        
-        VoteTable.reloadData()
-    }
 }

@@ -136,7 +136,6 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
         if(indexPath.section == 0)
         {
-            print("")
             delegate?.startViewControllerDidSelectAdd()
         }
         else

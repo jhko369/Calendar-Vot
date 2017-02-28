@@ -55,7 +55,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 controller = instantiateVoteViewController(with: voteData)
             
             }
-            else if (voteData.created.isCreated == "finish")
+            else if (voteData.isFinished() || voteData.created.isCreated == "finish" )
             {
                 controller = instantiateResultViewController(with: voteData)
 
@@ -196,17 +196,14 @@ extension MessagesViewController: AddViewControllerDelegate {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         guard let voteData = controller.voteData else { fatalError("Expected the controller to be displaying a shoppingList") }
         
-        // Create a new message with the same session as any currently selected message.
-        
         let message = composeMessage(with: voteData, caption: "투표(\(voteData.voteName))가 등록되었습니다. ", session: conversation.selectedMessage?.session)
         
-        // Add the message to the conversation.
-                conversation.insert(message) { error in
-                    if let error = error {
-                        print(error)
-                    }
-                }
-                
+        conversation.insert(message) { error in
+            if let error = error {
+                print(error)
+            }
+        }
+        
         dismiss()
     }
 }

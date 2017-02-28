@@ -298,9 +298,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         if(finishVote)
         {voteData?.created.isCreated = "finish"}
 
-        
-      //  voteData?.selectDate = selectDate
-      //  voteData?.selectLocation = selectLocation
+
         voteData?.SelectDataSetting()
         
         delegate?.voteViewController(self)

@@ -184,8 +184,14 @@ class Vote
     
     func isFinished() ->Bool
     {
-        return true;
+        if(dateFormatter.date(from: self.finishTime.time)! < NSDate.init() as Date){
+            return true
+        }
+        else{
+            return false
+        }
     }
+    
 }
 
 extension Vote

@@ -21,34 +21,29 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func AddBtn(_ sender: UIBarButtonItem)
     {
         
-        let alert = UIAlertController(title: "Add Event", message: "Add this event to your calendar?", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "캘린더에 추가하기", message: "투표 결과를 캘린더에 추가하시겠습니까?", preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             let eventStore = EKEventStore()
-        
-        let endDate = self.startdate.addingTimeInterval(60 * 60) // One hour
-        
-        if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized)
-        {
-            eventStore.requestAccess(to: .event, completion: {
-                granted, error in
+            
+            let endDate = self.startdate.addingTimeInterval(60 * 60) // One hour
+            
+            if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized)
+            {
+                eventStore.requestAccess(to: .event, completion: {
+                    granted, error in
+                    self.createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
+                })
+            } else {
                 self.createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
-            })
-        } else {
-            self.createEvent(eventStore, title: self.voteName, startDate: self.startdate, endDate: endDate, location: self.location)
-        }
-        
-            print("Handle Ok logic here")
+            }
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
+            
         }))
         
         present(alert, animated: true, completion: nil)
-        
-        
-        
         
     }
     
@@ -64,7 +59,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         do {
             try eventStore.save(event, span: .thisEvent)
         } catch {
-            print("Bad things happened")
+            //error
         }
     }
     

@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>캘린더 접근 허용 ? </string>
+	<string>abcd</string>
 	<key>CFBundleIcons</key>
 	<dict/>
 	<key>CFBundleExecutable</key>
